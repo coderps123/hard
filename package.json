@@ -1,0 +1,42 @@
+{
+  "name": "hard",
+  "version": "1.0.0",
+  "types": "dist/types",
+  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn clean && rollup --config rollup.config.ts --configPlugin typescript",
+    "clean": "yarn rimraf dist",
+    "prepare": "husky install",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "lint-staged": {
+    "src/**/*": "prettier --write --ignore-unknown"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-strip": "^3.0.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "^18.3.3",
+    "autoprefixer": "^10.4.19",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "postcss": "^8.4.39",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.18.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "sass": "^1.77.8",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "react": ">=18.3.1"
+  },
+  "peerDependencies": {
+    "react": ">=18.3.1"
+  }
+}

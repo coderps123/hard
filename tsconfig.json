@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"target": "ES2015",
+		"module": "ES2022",
+		"strict": true,
+		"moduleResolution": "Node",
+		"declaration": true,
+		"declarationDir": "dist/types",
+		"jsxFactory": "React.createElement",
+		"jsx": "react",
+		"allowSyntheticDefaultImports": true
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist"]
+}

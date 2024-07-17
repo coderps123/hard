@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["../../../src/packages/button/index.tsx"],"sourcesContent":["import React from 'react'\nimport './index.scss'\n\nexport const Button = () => {\n\treturn <div>按钮</div>\n}\n"],"names":[],"mappings":";;AAGO,MAAM,MAAM,GAAG,MAAK;AAC1B,IAAA,OAAO,gDAAa,CAAA;AACrB;;;;"}
