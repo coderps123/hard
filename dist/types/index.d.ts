@@ -1,3 +1,3 @@
-import { Button } from './packages/button';
 import './index.scss';
+import { Button } from './packages/button';
 export { Button };

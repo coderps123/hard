@@ -1,7 +1,7 @@
-body {
-  background-color: aqua;
-}
 html {
   background-color: salmon;
   display: flex;
+}
+body {
+  background-color: aqua;
 }
