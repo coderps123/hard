@@ -8,6 +8,7 @@
 		"declarationDir": "dist/types",
 		"jsxFactory": "React.createElement",
 		"jsx": "react",
+		"jsxFragmentFactory": "React.Fragment",
 		"allowSyntheticDefaultImports": true
 	},
 	"include": ["src/**/*"],

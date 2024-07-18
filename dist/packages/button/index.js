@@ -1,7 +1,10 @@
 import React from 'react';
 
-const Button = () => {
-    return React.createElement("div", null, "\u6309\u94AE");
+const Button = (props) => {
+    const { type = 'default' } = props;
+    console.log(type);
+    return (React.createElement(React.Fragment, null,
+        React.createElement("button", null, "\u6309\u94AE")));
 };
 
 export { Button };
