@@ -1,8 +1,20 @@
+@use './mixins/mixins.scss' as *;
+@use './common/var.scss' as *;
+
 :root {
-	--h-button-primary: '#409eff';
-	--h-button-success: '#67c23a';
-	--h-button-warning: '#e6a23c';
-	--h-button-danger: '#f56c6c';
-	--h-button-error: '#f56c6c';
-	--h-button-info: '#909399';
+	// --h-color-#{type}
+	// @include set-component-css-var('color-white', $color-white);
+	// @include set-component-css-var('color-black', $color-black);
+
+	--h-color-primary: #409eff;
+	--h-color-success: #67c23a;
+	--h-color-warning: #e6a23c;
+	--h-color-danger: #f56c6c;
+	--h-color-error: #f56c6c;
+	--h-color-info: #909399;
+}
+
+:root {
+	// --h-border-color
+	@include set-component-css-var('border-color', $border-color);
 }

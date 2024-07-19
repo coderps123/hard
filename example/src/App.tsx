@@ -1,10 +1,10 @@
-import { Button } from 'hard'
 import 'hard/dist/index.css'
+import { ButtonPage } from './pages/Button'
 
 function App() {
 	return (
 		<div className='App'>
-			<Button></Button>
+			<ButtonPage />
 		</div>
 	)
 }

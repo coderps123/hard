@@ -1,0 +1,44 @@
+@use 'sass:map';
+
+$colors: () !default;
+$colors: map.deep-merge(
+	(
+		'white': #ffffff,
+		'black': #000000,
+		'primary': (
+			'base': #409eff
+		),
+		'success': (
+			'base': #67c23a
+		),
+		'warning': (
+			'base': #e6a23c
+		),
+		'danger': (
+			'base': #f56c6c
+		),
+		'error': (
+			'base': #f56c6c
+		),
+		'info': (
+			'base': #909399
+		)
+	),
+	$colors
+);
+
+$color-white: map.get($colors, 'white') !default;
+$color-black: map.get($colors, 'black') !default;
+
+$border-color: () !default;
+$border-color: map.merge(
+	(
+		'': #dcdfe6,
+		'light': #e4e7ed,
+		'lighter': #ebeef5,
+		'extra-light': #f2f6fc,
+		'dark': #d4d7de,
+		'darker': #cdd0d6
+	),
+	$border-color
+);

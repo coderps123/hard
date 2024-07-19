@@ -9,7 +9,11 @@
 		"jsxFactory": "React.createElement",
 		"jsx": "react",
 		"jsxFragmentFactory": "React.Fragment",
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": "src",
+		"paths": {
+			"@": ["src"]
+		}
 	},
 	"include": ["src/**/*"],
 	"exclude": ["node_modules", "dist"]

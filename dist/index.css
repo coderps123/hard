@@ -1,9 +1,23 @@
 
 :root {
-  --h-button-primary: "#409eff";
-  --h-button-success: "#67c23a";
-  --h-button-warning: "#e6a23c";
-  --h-button-danger: "#f56c6c";
-  --h-button-error: "#f56c6c";
-  --h-button-info: "#909399";
+  --h-color-primary: #409eff;
+  --h-color-success: #67c23a;
+  --h-color-warning: #e6a23c;
+  --h-color-danger: #f56c6c;
+  --h-color-error: #f56c6c;
+  --h-color-info: #909399;
+}
+
+:root {
+  --h--border-color: #dcdfe6;
+  --h--border-color-light: #e4e7ed;
+  --h--border-color-lighter: #ebeef5;
+  --h--border-color-extra-light: #f2f6fc;
+  --h--border-color-dark: #d4d7de;
+  --h--border-color-darker: #cdd0d6;
+}
+
+.h-button {
+  --h-button-bg-color: var(--h-color-white);
+  background-color: var(--h-button-bg-color);
 }
