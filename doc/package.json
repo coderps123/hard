@@ -44,6 +44,9 @@
       "prettier --parser=typescript --write"
     ]
   },
+  "dependencies": {
+    "dumi-theme-antd-style": "^0.31.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",

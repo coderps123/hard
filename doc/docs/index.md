@@ -1,12 +1,10 @@
 ---
 hero:
-  title: library
-  description: A react library developed with dumi
+  title: Element Plus React
+  description: A Eeact UI Library
   actions:
-    - text: Hello
-      link: /
-    - text: World
-      link: /
+    - text: Get Start
+      link: /src/Foo
 features:
   - title: Hello
     emoji: 💎
@@ -18,5 +16,3 @@ features:
     emoji: 🚀
     description: Put ! description here
 ---
-
-element-plus-react
