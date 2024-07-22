@@ -1,5 +1,5 @@
 import './index.scss'
 
-import { Button } from './packages/button'
+import { Button } from './packages/components'
 
 export { Button }

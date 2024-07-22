@@ -1,4 +1,5 @@
 import { Button } from 'hard'
+import { SearchOutlined, FormOutlined, CheckOutlined, MailOutlined, HeartOutlined, DeleteOutlined } from '@ant-design/icons'
 
 export const ButtonPage = () => {
 	return (
@@ -55,22 +56,12 @@ export const ButtonPage = () => {
 
 			{/* circle */}
 			<div>
-				<Button circle>Default</Button>
-				<Button circle type='primary'>
-					Primary
-				</Button>
-				<Button circle type='success'>
-					Success
-				</Button>
-				<Button circle type='warning'>
-					Warning
-				</Button>
-				<Button circle type='danger'>
-					Danger
-				</Button>
-				<Button circle type='info'>
-					Info
-				</Button>
+				<Button circle icon={<SearchOutlined />}></Button>
+				<Button circle type='primary' icon={<FormOutlined />}></Button>
+				<Button circle type='success' icon={<CheckOutlined />}></Button>
+				<Button circle type='warning' icon={<MailOutlined />}></Button>
+				<Button circle type='danger' icon={<HeartOutlined />}></Button>
+				<Button circle type='info' icon={<DeleteOutlined />} onClick={(event) => console.log(event)}></Button>
 			</div>
 		</div>
 	)

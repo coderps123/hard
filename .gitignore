@@ -1,5 +1,4 @@
-# dependencies
-/node_modules
-dist
+node_modules
+/dist
 
-*storybook.log
+.DS_Store
