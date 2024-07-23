@@ -12,7 +12,7 @@ import {
 import { Button } from 'hard';
 import React from 'react';
 
-const BaseDemo = () => {
+const Demo = () => {
   return (
     <div>
       {/* default */}
@@ -83,4 +83,4 @@ const BaseDemo = () => {
   );
 };
 
-export default BaseDemo;
+export default Demo;

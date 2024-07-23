@@ -15,8 +15,6 @@ group: # 分组
 
 使用 `type`、`plain`、`round` 和 `circle` 来定义按钮的样式。
 
-<!-- 可以通过code加载示例代码，dumi会帮我们做解析 -->
-
 <code src="./demo/base.tsx"></code>
 
 ## 禁用状态
@@ -25,10 +23,24 @@ group: # 分组
 
 <code src="./demo/disabled.tsx"></code>
 
-## APi
+## 文字按钮
 
-<!-- 会生成api表格 -->
+没有边框和背景色的按钮。
 
-| 属性 | 类型      | 默认值    | 必填     | 说明  |
-| ---- | --------- | --------- | -------- | ----- | -------- |
-| type | 'primary' | 'default' | 'default | false | 按钮类型 |
+<code src="./demo/text.tsx"></code>
+
+## 图标按钮
+
+使用图标为按钮添加更多的含义。 你也可以单独使用图标不添加文字来节省显示区域占用。
+
+使用 icon 属性来为按钮添加图标。 您可以在我们的 Icon 组件中找到所需图标。 通过向右方添加 标签来添加图标， 你也可以使用自定义图标。
+
+<code src="./demo/icon.tsx"></code>
+
+## 按钮组
+
+以按钮组的方式出现，常用于多项类似操作。
+
+使用 `<Button.Group>` 对多个按钮分组。
+
+<code src="./demo/group.tsx"></code>
