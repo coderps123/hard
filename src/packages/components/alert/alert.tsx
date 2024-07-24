@@ -29,7 +29,7 @@ const TypeComponentMap = {
 	info: <InfoCircleOutlined />
 }
 
-const Alert: React.FC<AlertProps> = (props) => {
+const InternalAlert: React.ForwardRefRenderFunction<HTMLDivElement, AlertProps> = (props, ref) => {
 	const { title, type = 'info', effect = 'light', closable = true, center } = props
 
 	const className = classNames('el-alert', {
@@ -68,7 +68,7 @@ const Alert: React.FC<AlertProps> = (props) => {
 	)
 
 	return (
-		<div className={className} style={!visible ? { display: 'none' } : undefined}>
+		<div className={className} style={!visible ? { display: 'none' } : undefined} ref={ref}>
 			{iconNode}
 			<div className='el-alert__content'>
 				<span className={classNames('el-alert__title', { 'with-description': props.description })}>
@@ -81,5 +81,9 @@ const Alert: React.FC<AlertProps> = (props) => {
 		</div>
 	)
 }
+
+const Alert: React.ForwardRefExoticComponent<
+	Omit<AlertProps, 'ref'> & React.RefAttributes<HTMLDivElement>
+> = React.forwardRef<HTMLDivElement, AlertProps>(InternalAlert)
 
 export default Alert

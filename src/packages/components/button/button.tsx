@@ -95,14 +95,16 @@ const InternalButton: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonPr
 }
 
 interface CompoundedComponent
-	extends React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLButtonElement>> {
+	extends React.ForwardRefExoticComponent<
+		Omit<ButtonProps, 'ref'> & React.RefAttributes<HTMLButtonElement>
+	> {
 	Group: typeof ButtonGroup
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = React.forwardRef<HTMLButtonElement, Omit<ButtonProps, 'ref'>>(
 	InternalButton
 ) as CompoundedComponent
 
 Button.Group = ButtonGroup
 
-export default Button
+export default Button as CompoundedComponent
