@@ -1,6 +1,6 @@
 module.exports = {
 	// 一行最多多少个字符
-	printWidth: 100,
+	printWidth: 80,
 	// 指定每个缩进级别的空格数
 	tabWidth: 2,
 	// 使用制符而不是空格缩进行
@@ -15,5 +15,19 @@ module.exports = {
 	// 在JSX中使用单引号而不是双引号
 	jsxSingleQuote: true,
 	// 换行符使用 lf 结尾是 可选值"<auto|lf|crlf|cr>"
-	endOfLine: 'lf'
+	endOfLine: 'lf',
+	pluginSearchDirs: false,
+	plugins: [
+		require.resolve('prettier-plugin-organize-imports'),
+		require.resolve('prettier-plugin-packagejson')
+	],
+	proseWrap: 'never',
+	overrides: [
+		{
+			files: '*.md',
+			options: {
+				proseWrap: 'preserve'
+			}
+		}
+	]
 }

@@ -1,0 +1,154 @@
+@use './mixins/_mixin.scss' as *;
+@use './mixins/_var.scss' as *;
+@use 'sass:map';
+@use './mixins/_button.scss' as *;
+@use './common/var.scss' as *;
+@use './mixins/function.scss' as *;
+@use './common/config.scss' as *;
+
+$button-icon-span-gap: () !default;
+$button-icon-span-gap: map.merge(
+	(
+		'large': 8px,
+		'default': 6px,
+		'small': 4px
+	),
+	$button-icon-span-gap
+);
+
+@include b(button) {
+	@include set-component-css-var('button', $button);
+}
+
+@include b(button) {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+
+	line-height: 1;
+	height: 32px;
+	white-space: nowrap;
+	cursor: pointer;
+	text-align: center;
+	box-sizing: border-box;
+	outline: none;
+	transition: 0.1s;
+	font-weight: 600;
+	user-select: none;
+	vertical-align: middle;
+	-webkit-appearance: none;
+
+	color: getCssVar('button', 'text-color');
+	background-color: getCssVar('button', 'bg-color');
+	border: getCssVar('border');
+	border-color: getCssVar('button', 'border-color');
+
+	&:hover {
+		color: getCssVar('button', 'hover', 'text-color');
+		background-color: getCssVar('button', 'hover', 'bg-color');
+		border-color: getCssVar('button', 'hover', 'border-color');
+		outline: none;
+	}
+	&:active {
+		color: getCssVar('button', 'active', 'text-color');
+		background-color: getCssVar('button', 'active', 'bg-color');
+		border-color: getCssVar('button', 'active', 'border-color');
+		outline: none;
+	}
+
+	> span {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	& + & {
+		margin-left: 12px;
+	}
+
+	// mixins: button-size
+	& {
+		@include button-size(
+			map.get($button-padding-vertical, 'default') - $button-border-width,
+			map.get($button-padding-horizontal, 'default') - $button-border-width,
+			map.get($button-font-size, 'default'),
+			map.get($button-border-radius, 'default')
+		);
+	}
+
+	& [class*='#{$namespace}-icon'] {
+		& + span {
+			margin-left: map.get($button-icon-span-gap, 'default');
+		}
+	}
+
+	@include when(plain) {
+		@include css-var-from-global(('button', 'hover', 'text-color'), ('color', 'primary'));
+		@include css-var-from-global(('button', 'hover', 'bg-color'), ('fill-color', 'blank'));
+		@include css-var-from-global(('button', 'hover', 'border-color'), ('color', 'primary'));
+	}
+
+	@include when(round) {
+		border-radius: getCssVar('border-radius', 'round');
+		-webkit-border-radius: getCssVar('border-radius', 'round');
+		-moz-border-radius: getCssVar('border-radius', 'round');
+		-ms-border-radius: getCssVar('border-radius', 'round');
+		-o-border-radius: getCssVar('border-radius', 'round');
+	}
+
+	@include when(circle) {
+		border-radius: getCssVar('border-radius', 'circle');
+		-webkit-border-radius: getCssVar('border-radius', 'circle');
+		-moz-border-radius: getCssVar('border-radius', 'circle');
+		-ms-border-radius: getCssVar('border-radius', 'circle');
+		-o-border-radius: getCssVar('border-radius', 'circle');
+	}
+
+	@include when(disabled) {
+		color: getCssVar('button', 'disabled', 'text-color');
+		cursor: not-allowed;
+		background-image: none;
+		background-color: getCssVar('button', 'disabled', 'bg-color');
+		border-color: getCssVar('button', 'disabled', 'border-color');
+	}
+
+	@include when(text) {
+		color: getCssVar('button', 'text-color');
+		background-color: transparent;
+		border: 0 solid transparent;
+
+		@include when(disabled) {
+			color: getCssVar('button', 'disabled', 'text-color');
+			background-color: transparent !important;
+		}
+
+		&:not(.is-disabled) {
+			&:hover {
+				background-color: getCssVar('fill-color', 'light');
+			}
+
+			&:active {
+				background-color: getCssVar('fill-color');
+			}
+
+			@include when(has-bg) {
+				background-color: getCssVar('fill-color', 'light');
+
+				&:hover {
+					background-color: getCssVar('fill-color');
+				}
+
+				&:active {
+					background-color: getCssVar('fill-color', 'dark');
+				}
+			}
+		}
+	}
+
+	// font-size: $font-size;
+	// border-radius: $border-radius;
+	@each $type in (primary, success, warning, danger, info) {
+		@include m($type) {
+			@include button-variant($type);
+		}
+	}
+}

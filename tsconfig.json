@@ -6,15 +6,21 @@
 		"moduleResolution": "Node",
 		"declaration": true,
 		"declarationDir": "dist/types",
+		"emitDeclarationOnly": true,
 		"jsxFactory": "React.createElement",
 		"jsx": "react",
 		"jsxFragmentFactory": "React.Fragment",
 		"allowSyntheticDefaultImports": true,
-		"baseUrl": "src",
+		"baseUrl": "./",
 		"paths": {
-			"@": ["src"]
-		}
+			// "@": ["src"],
+			"@@/*": [".dumi/tmp/*"],
+			"element-plus-react": ["src"],
+			"element-plus-react/*": ["src/*", "*"]
+		},
+		"skipLibCheck": true,
+		"esModuleInterop": true
 	},
-	"include": ["src/**/*"],
-	"exclude": ["node_modules", "dist"]
+	"exclude": ["node_modules", "dist", "rollup.config.ts"],
+	"include": ["src/**/*"]
 }

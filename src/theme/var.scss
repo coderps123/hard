@@ -1,0 +1,29 @@
+@use './common/var.scss' as *;
+@use './mixins/_var.scss' as *;
+@use './mixins/function.scss' as *;
+
+:root {
+	@include set-css-var-value('color-white', $color-white);
+	@include set-css-var-value('color-black', $color-black);
+	// @include set-css-var-value('color-primary', $color-primary);
+	@each $type in (primary, success, warning, danger, error, info) {
+		@include set-css-color-type($colors, $type);
+	}
+}
+
+:root {
+	@include set-component-css-var('fill-color', $fill-color);
+	@include set-component-css-var('disabled', $disabled);
+	@include set-component-css-var('text-color', $text-color);
+	@include set-component-css-var('font-size', $font-size);
+	@include set-component-css-var('border-radius', $border-radius);
+
+	@include set-component-css-var('border-color', $border-color);
+
+	@include set-css-var-value('border-width', $border-width);
+	@include set-css-var-value('border-style', $border-style);
+	@include set-css-var-value(
+		'border',
+		getCssVar('border-width') getCssVar('border-style') getCssVar('border-color')
+	);
+}

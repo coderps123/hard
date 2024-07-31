@@ -9,6 +9,7 @@ import strip from '@rollup/plugin-strip'
 import typescript from '@rollup/plugin-typescript'
 import autoprefixer from 'autoprefixer'
 import { defineConfig } from 'rollup'
+import dts from 'rollup-plugin-dts'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import postcss from 'rollup-plugin-postcss'
 
@@ -38,22 +39,27 @@ export default defineConfig([
 		plugins: [
 			resolve(),
 			commonjs(),
-			typescript(),
+			typescript({ tsconfig: './tsconfig.json' }),
 			postcss({
 				extract: true,
 				plugins: [autoprefixer()]
 			}),
 			strip(),
 			alias({
-				entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }]
+				entries: [
+					{
+						find: 'element-plus-react',
+						replacement: path.resolve(__dirname, 'src')
+					}
+				]
 			}),
 			peerDepsExternal()
 		]
+	},
+	{
+		input: 'dist/esm/types/index.d.ts',
+		output: [{ file: './dist/index.d.ts', format: 'esm' }],
+		plugins: [dts()],
+		external: [/\.(css|less|scss)$/]
 	}
-	// {
-	// 	input: 'dist/esm/types/index.d.ts',
-	// 	output: [{ file: './dist/index.d.ts', format: 'esm' }],
-	// 	// plugins: [dts()],
-	// 	external: [/\.(css|less|scss)$/]
-	// }
 ])

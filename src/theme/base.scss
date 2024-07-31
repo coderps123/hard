@@ -1,0 +1,7 @@
+@use './var.scss';
+@use './common/config.scss' as *;
+@use './mixins/_mixin.scss' as *;
+
+@include b(icon--right) {
+	margin-left: 5px;
+}

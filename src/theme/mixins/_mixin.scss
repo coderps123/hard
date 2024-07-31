@@ -1,0 +1,30 @@
+@use '../common/config.scss' as *;
+
+@mixin b($block) {
+	$B: $namespace + '-' + $block;
+
+	.#{$B} {
+		@content;
+	}
+}
+
+// 定义修改器
+@mixin m($modifier) {
+	$seletor: &;
+	$currentSelector: '';
+	@each $unit in $modifier {
+		$currentSelector: #{$currentSelector + $seletor + $modifier-separator + $unit};
+	}
+
+	@at-root {
+		#{$currentSelector} {
+			@content;
+		}
+	}
+}
+
+@mixin when($state) {
+	&.#{$state-prefix + $state} {
+		@content;
+	}
+}
