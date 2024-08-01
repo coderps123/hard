@@ -1,4 +1,3 @@
-export { default as AlertFilled } from './AlertFilled'
 export { default as Delete } from './Delete'
 export { default as Edit } from './Edit'
 export { default as Plus } from './Plus'
