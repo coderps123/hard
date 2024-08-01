@@ -1,5 +1,5 @@
+import { Plus } from '@element-plus-react/icons'
 import { Button } from 'element-plus-react'
-import { Plus } from 'element-plus-react/icons'
 import React from 'react'
 
 const App: React.FC = () => {

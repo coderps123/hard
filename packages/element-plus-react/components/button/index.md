@@ -200,7 +200,7 @@ export default App
 
 ```tsx
 import { Button } from 'element-plus-react'
-import { Plus, Edit, Search, Delete } from 'element-plus-react/icons'
+import { Plus, Edit, Search, Delete } from '@element-plus-react/icons'
 import React from 'react'
 
 const App: React.FC = () => {
@@ -223,3 +223,5 @@ const App: React.FC = () => {
 
 export default App
 ```
+
+<code src='./demo/basic.tsx'></code>

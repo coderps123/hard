@@ -1,5 +1,5 @@
+import { NAME_SPACE } from '@element-plus-react/element-plus-react/config'
 import classNames from 'classnames'
-import { NAME_SPACE } from 'element-plus-react/config'
 import React, { useMemo } from 'react'
 import { ButtonHTMLType, Buttontype } from './ButtonHelpers'
 import './style'
