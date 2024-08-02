@@ -5,10 +5,13 @@
 	"keywords": [],
 	"license": "ISC",
 	"author": "",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {},
 	"dependencies": {
 		"@hard-ui/icons": "workspace:^",
 		"@hard-ui/theme-chalk": "workspace:^"

@@ -46,8 +46,7 @@ $color-info: map.get($colors, 'info', 'base') !default;
 	$colors: map.deep-merge(
 		(
 			$type: (
-				'#{$mode}-#{$number}':
-					mix($mix-color, map.get($colors, $type, 'base'), math.percentage(math.div($number, 10)))
+				'#{$mode}-#{$number}': mix($mix-color, map.get($colors, $type, 'base'), math.percentage(math.div($number, 10)))
 			)
 		),
 		$colors
@@ -164,6 +163,7 @@ $button: map.merge(
 		'hover-text-color': getCssVar('color-primary'),
 		'hover-bg-color': getCssVar('color-primary', 'light-9'),
 		'hover-border-color': getCssVar('color-primary-light-7'),
+		'divide-border-color': rgba($color-white, 0.5),
 		'active-text-color': getCssVar('button-hover-text-color'),
 		'active-border-color': getCssVar('color-primary'),
 		'active-bg-color': getCssVar('button', 'hover-bg-color'),

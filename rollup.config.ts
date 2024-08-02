@@ -1,6 +1,4 @@
 import { readFileSync } from 'node:fs'
-import path, { dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
 
 import alias from '@rollup/plugin-alias'
 import commonjs from '@rollup/plugin-commonjs'
@@ -9,18 +7,17 @@ import strip from '@rollup/plugin-strip'
 import typescript from '@rollup/plugin-typescript'
 import autoprefixer from 'autoprefixer'
 import { defineConfig } from 'rollup'
-import dts from 'rollup-plugin-dts'
-import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+// import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import postcss from 'rollup-plugin-postcss'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+// const __filename = fileURLToPath(import.meta.url)
+// const __dirname = dirname(__filename)
 
 const pkg = JSON.parse(readFileSync('./package.json').toString())
 
 export default defineConfig([
 	{
-		input: 'src/index.ts',
+		input: 'packages/hard-ui/index.ts',
 		output: [
 			{
 				file: pkg.main,
@@ -39,7 +36,7 @@ export default defineConfig([
 		plugins: [
 			resolve(),
 			commonjs(),
-			typescript({ tsconfig: './tsconfig.json' }),
+			typescript({ tsconfig: 'tsconfig.json' }),
 			postcss({
 				extract: true,
 				plugins: [autoprefixer()]
@@ -47,19 +44,20 @@ export default defineConfig([
 			strip(),
 			alias({
 				entries: [
-					{
-						find: 'hard-ui',
-						replacement: path.resolve(__dirname, 'src')
-					}
+					// {
+					// 	find: 'hard-ui',
+					// 	replacement: path.resolve(__dirname, 'src')
+					// }
 				]
-			}),
-			peerDepsExternal()
-		]
-	},
-	{
-		input: 'dist/esm/types/index.d.ts',
-		output: [{ file: './dist/index.d.ts', format: 'esm' }],
-		plugins: [dts()],
-		external: [/\.(css|less|scss)$/]
+			})
+			// peerDepsExternal()
+		],
+		external: ['@hard-ui/icons', 'classnames', 'react', '@hard-ui/theme-chalk']
 	}
+	// {
+	// 	input: 'dist/esm/types/index.d.ts',
+	// 	output: [{ file: './dist/index.d.ts', format: 'esm' }],
+	// 	plugins: [dts()],
+	// 	external: [/\.(css|less|scss)$/]
+	// }
 ])

@@ -1,11 +1,11 @@
-import React from 'react'
+// import React from 'react'
 
-interface IconBaseProps {
-	icon: React.ReactNode
-}
+// interface IconBaseProps {
+// 	icon: React.ReactNode
+// }
 
-const IconBase: React.FC<IconBaseProps> = (props) => {
-	return props.icon
-}
+// const IconBase: React.FC<IconBaseProps> = (props) => {
+// 	return props.icon
+// }
 
-export default IconBase
+export default 2

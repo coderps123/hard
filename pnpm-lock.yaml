@@ -68,7 +68,7 @@ importers:
         version: 8.17.0
       hard-ui:
         specifier: workspace:^
-        version: link:packages/hard-ui/components
+        version: link:packages/hard-ui
       husky:
         specifier: ^9.0.11
         version: 9.1.4
@@ -87,6 +87,9 @@ importers:
       prettier-plugin-packagejson:
         specifier: ^2.2.18
         version: 2.5.1(prettier@3.3.3)
+      radash:
+        specifier: ^12.1.0
+        version: 12.1.0
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -115,7 +118,14 @@ importers:
         specifier: 4.7.3
         version: 4.7.3
 
-  packages/hard-ui: {}
+  packages/hard-ui:
+    dependencies:
+      '@hard-ui/icons':
+        specifier: workspace:^
+        version: link:../icons
+      '@hard-ui/theme-chalk':
+        specifier: workspace:^
+        version: link:../theme-chalk
 
   packages/hard-ui/components:
     dependencies:
@@ -12093,6 +12103,11 @@ packages:
   /quick-lru@4.0.1:
     resolution: {integrity: sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==}
     engines: {node: '>=8'}
+    dev: true
+
+  /radash@12.1.0:
+    resolution: {integrity: sha512-b0Zcf09AhqKS83btmUeYBS8tFK7XL2e3RvLmZcm0sTdF1/UUlHSsjXdCcWNxe7yfmAlPve5ym0DmKGtTzP6kVQ==}
+    engines: {node: '>=14.18.0'}
     dev: true
 
   /ramda@0.29.0:

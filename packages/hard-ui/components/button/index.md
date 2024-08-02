@@ -224,4 +224,57 @@ const App: React.FC = () => {
 export default App
 ```
 
-<code src='./demo/basic.tsx'></code>
+# 按钮组
+
+```tsx
+import { Plus, Delete, Edit } from '@hard-ui/icons'
+import { Button } from 'hard-ui'
+import React from 'react'
+
+const App: React.FC = () => {
+	return (
+		<div>
+			<Button.Group>
+				<Button type='' icon={<Plus />}>
+					Previous Page
+				</Button>
+				<Button type=''>
+					Next Page
+					<Plus className='h-icon--right' />
+				</Button>
+			</Button.Group>
+
+			<Button.Group className='ml-10'>
+				<Button type='primary' icon={<Delete />}></Button>
+				<Button type='primary'>
+					<Edit />
+				</Button>
+				<Button type='primary'>
+					<Plus />
+				</Button>
+			</Button.Group>
+		</div>
+	)
+}
+
+export default App
+```
+
+# 加载状态按钮
+
+```tsx
+import { Button } from 'hard-ui'
+import React from 'react'
+
+const App: React.FC = () => {
+	return (
+		<div>
+			<div className='mb-4'>
+				<Button type='primary' loading></Button>
+			</div>
+		</div>
+	)
+}
+
+export default App
+```
