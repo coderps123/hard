@@ -16,7 +16,7 @@ group: # 分组
 使用 `type`、`plain`、`round` 和 `circle` 来定义按钮的样式。
 
 ```tsx
-import { Button } from 'element-plus-react'
+import { Button } from 'hard-ui'
 import React from 'react'
 import './style'
 
@@ -90,7 +90,7 @@ export default App
 使用 `disabled` 属性来控制按钮是否为禁用状态。 该属性接受一个 `Boolean` 类型的值。
 
 ```tsx
-import { Button } from 'element-plus-react'
+import { Button } from 'hard-ui'
 import React from 'react'
 import './style'
 
@@ -145,7 +145,7 @@ export default App
 没有边框和背景色的按钮。
 
 ```tsx
-import { Button } from 'element-plus-react'
+import { Button } from 'hard-ui'
 import React from 'react'
 import './style'
 
@@ -199,8 +199,8 @@ export default App
 使用图标为按钮添加更多的含义。 你也可以单独使用图标不添加文字来节省显示区域占用。
 
 ```tsx
-import { Button } from 'element-plus-react'
-import { Plus, Edit, Search, Delete } from '@element-plus-react/icons'
+import { Button } from 'hard-ui'
+import { Plus, Edit, Search, Delete } from '@hard-ui/icons'
 import React from 'react'
 
 const App: React.FC = () => {

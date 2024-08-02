@@ -1,4 +1,4 @@
-import { NAME_SPACE } from '@element-plus-react/element-plus-react/config'
+import { NAME_SPACE } from '@hard-ui/hard-ui/config'
 import classNames from 'classnames'
 import React, { useMemo } from 'react'
 import { ButtonHTMLType, Buttontype } from './ButtonHelpers'

@@ -48,7 +48,7 @@ export default defineConfig([
 			alias({
 				entries: [
 					{
-						find: 'element-plus-react',
+						find: 'hard-ui',
 						replacement: path.resolve(__dirname, 'src')
 					}
 				]

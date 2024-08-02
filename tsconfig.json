@@ -14,8 +14,8 @@
 		"baseUrl": "./",
 		"paths": {
 			"@@/*": [".dumi/tmp/*"],
-			"element-plus-react": ["packages/element-plus-react"],
-			"@element-plus-react/*": ["packages/*"]
+			"hard-ui": ["packages/hard-ui"],
+			"@hard-ui/*": ["packages/*"]
 		},
 		"skipLibCheck": true,
 		"esModuleInterop": true

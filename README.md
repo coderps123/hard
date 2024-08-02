@@ -1,7 +1,7 @@
-# element-plus-react
+# hard-ui
 
-[![NPM version](https://img.shields.io/npm/v/element-plus-react.svg?style=flat)](https://npmjs.org/package/element-plus-react)
-[![NPM downloads](http://img.shields.io/npm/dm/element-plus-react.svg?style=flat)](https://npmjs.org/package/element-plus-react)
+[![NPM version](https://img.shields.io/npm/v/hard-ui.svg?style=flat)](https://npmjs.org/package/hard-ui)
+[![NPM downloads](http://img.shields.io/npm/dm/hard-ui.svg?style=flat)](https://npmjs.org/package/hard-ui)
 
 A react library developed with dumi
 

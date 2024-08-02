@@ -1,0 +1,124 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program\node_global\node_modules\yarn\bin\yarn.js add @hard-ui/icons --filter hard-ui
+
+PATH: 
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Git\cmd;C:\Program Files\TortoiseSVN\bin;D:\nvm;C:\Program Files\nodejs;C:\Program Files\nodejs;C:\Program Files\nodejs\node_global;C:\Program;C:\Program\node_global;C:\Program Files\MySQL\MySQL Server 5.7\bin;C:\Program Files\Go\bin;C:\Program Files\Redis\;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\WebStorm 2022.2.3\bin;d:\Program Files\JetBrains\IntelliJ IDEA 2022.2.3\bin;D:\Program Files\Java\jdk1.8.0_351\jre\bin;D:\Program Files\Java\jdk1.8.0_351\bin;D:\maven\apache-maven-3.8.6\bin;C:\Users\Administrator\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Administrator\go\bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  20.0.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error [ERR_SOCKET_CONNECTION_TIMEOUT]: Socket connection timeout
+      at new NodeError (node:internal/errors:399:5)
+      at internalConnectMultiple (node:net:1098:20)
+      at Timeout.internalConnectMultipleTimeout (node:net:1637:3)
+      at listOnTimeout (node:internal/timers:575:11)
+      at process.processTimers (node:internal/timers:514:7)
+
+npm manifest: 
+  {
+  	"version": "0.0.1",
+  	"private": true,
+  	"description": "A react library developed with dumi",
+  	"license": "MIT",
+  	"main": "dist/cjs/index.js",
+  	"module": "dist/esm/index.js",
+  	"types": "dist/index.d.ts",
+  	"files": [
+  		"dist"
+  	],
+  	"scripts": {
+  		"build": "pnpm clean && rollup --config rollup.config.ts --configPlugin typescript",
+  		"clean": "pnpm rimraf dist",
+  		"dev": "dumi dev",
+  		"docs:build": "dumi build",
+  		"docs:preview": "dumi preview",
+  		"doctor": "father doctor",
+  		"lint": "npm run lint:es && npm run lint:css",
+  		"lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
+  		"lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
+  		"prepare": "husky install && dumi setup",
+  		"prepublishOnly": "father doctor && npm run build",
+  		"start": "npm run dev",
+  		"test:sass": "rollup --config rollup.config.ts -w --configPlugin typescript"
+  	},
+  	"lint-staged": {
+  		"*.{md,json}": [
+  			"prettier --write --no-error-on-unmatched-pattern"
+  		],
+  		"*.{css,less}": [
+  			"stylelint --fix",
+  			"prettier --write"
+  		],
+  		"*.{js,jsx}": [
+  			"eslint --fix",
+  			"prettier --write"
+  		],
+  		"*.{ts,tsx}": [
+  			"eslint --fix",
+  			"prettier --parser=typescript --write"
+  		]
+  	},
+  	"dependencies": {
+  		"classnames": "^2.5.1",
+  		"react": "^18.3.1",
+  		"react-dom": "^18.3.1"
+  	},
+  	"devDependencies": {
+  		"@commitlint/cli": "^19.3.0",
+  		"@commitlint/config-conventional": "^19.2.2",
+  		"@rollup/plugin-alias": "^5.1.0",
+  		"@rollup/plugin-commonjs": "^26.0.1",
+  		"@rollup/plugin-node-resolve": "^15.2.3",
+  		"@rollup/plugin-strip": "^3.0.4",
+  		"@rollup/plugin-typescript": "^11.1.6",
+  		"@types/node": "^20.14.11",
+  		"@types/react": "^18.3.3",
+  		"@umijs/lint": "^4.0.0",
+  		"autoprefixer": "^10.4.19",
+  		"commitizen": "^4.3.0",
+  		"cz-conventional-changelog": "^3.3.0",
+  		"dumi": "^2.3.0",
+  		"dumi-theme-antd-style": "^0.31.0",
+  		"eslint": "8.17.0",
+  		"hard-ui": "workspace:^",
+  		"husky": "^9.0.11",
+  		"lint-staged": "^15.2.7",
+  		"postcss": "^8.4.39",
+  		"prettier": "^3.3.3",
+  		"prettier-plugin-organize-imports": "^3.0.0",
+  		"prettier-plugin-packagejson": "^2.2.18",
+  		"rimraf": "^6.0.1",
+  		"rollup": "^4.18.1",
+  		"rollup-plugin-dts": "^6.1.1",
+  		"rollup-plugin-peer-deps-external": "^2.2.4",
+  		"rollup-plugin-postcss": "^4.0.2",
+  		"sass": "^1.77.8",
+  		"stylelint": "^14.9.1",
+  		"tslib": "^2.6.3",
+  		"typescript": "4.7.3"
+  	},
+  	"peerDependencies": {
+  		"classnames": ">=2.5.1",
+  		"react": ">=18.3.1",
+  		"react-dom": ">=18.3.1"
+  	},
+  	"publishConfig": {
+  		"access": "public"
+  	},
+  	"authors": [
+  		"ps"
+  	]
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -1,5 +1,5 @@
 {
-	"name": "element-plus-react",
+	"name": "hard-ui",
 	"version": "1.0.0",
 	"description": "",
 	"keywords": [],
@@ -10,7 +10,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"@element-plus-react/icons": "workspace:^",
-		"@element-plus-react/theme-chalk": "workspace:^"
+		"@hard-ui/icons": "workspace:^",
+		"@hard-ui/theme-chalk": "workspace:^"
 	}
 }
