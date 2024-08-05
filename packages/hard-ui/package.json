@@ -11,9 +11,17 @@
 	"files": [
 		"dist"
 	],
-	"scripts": {},
+	"scripts": {
+		"build": "pnpm clean && rollup --config rollup.config.ts --configPlugin typescript",
+		"clean": "pnpm rimraf dist"
+	},
 	"dependencies": {
 		"@hard-ui/icons": "workspace:^",
 		"@hard-ui/theme-chalk": "workspace:^"
+	},
+	"peerDependencies": {
+		"classnames": ">=2.5.1",
+		"react": ">=18.3.1",
+		"react-dom": ">=18.3.1"
 	}
 }

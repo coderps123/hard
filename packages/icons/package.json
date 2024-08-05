@@ -5,8 +5,19 @@
 	"keywords": [],
 	"license": "ISC",
 	"author": "",
-	"main": "index.js",
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build": "pnpm clean && rollup --config rollup.config.ts --configPlugin typescript",
+		"clean": "pnpm rimraf dist"
+	},
+	"peerDependencies": {
+		"classnames": ">=2.5.1",
+		"react": ">=18.3.1",
+		"react-dom": ">=18.3.1"
 	}
 }
