@@ -12,5 +12,9 @@
 	"scripts": {
 		"build": "pnpm clean && rollup --config rollup.config.ts --configPlugin typescript",
 		"clean": "pnpm rimraf dist"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
 	}
 }
