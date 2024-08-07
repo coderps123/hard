@@ -5,7 +5,9 @@ const App: React.FC = () => {
 	return (
 		<div>
 			<div className='mb-4'>
-				<Button type='primary' loading></Button>
+				<Button type='primary' loading>
+					Primary
+				</Button>
 			</div>
 		</div>
 	)

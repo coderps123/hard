@@ -17,6 +17,7 @@ group: # 分组
 
 ```tsx
 import { Button } from 'hard-ui'
+import { Plus, Edit, Search, Delete } from '@hard-ui/icons'
 import React from 'react'
 import './style'
 
@@ -70,12 +71,12 @@ const App: React.FC = () => (
 		</div>
 
 		<div className='mb-10'>
-			<Button circle />
-			<Button type='primary' circle />
-			<Button type='success' circle />
-			<Button type='info' circle />
-			<Button type='warning' circle />
-			<Button type='danger' circle />
+			<Button icon={<Edit />} circle />
+			<Button icon={<Edit />} type='primary' circle />
+			<Button icon={<Edit />} type='success' circle />
+			<Button icon={<Edit />} type='info' circle />
+			<Button icon={<Edit />} type='warning' circle />
+			<Button icon={<Edit />} type='danger' circle />
 		</div>
 	</div>
 )
@@ -234,11 +235,9 @@ import React from 'react'
 const App: React.FC = () => {
 	return (
 		<div>
-			<Button.Group>
-				<Button type='' icon={<Plus />}>
-					Previous Page
-				</Button>
-				<Button type=''>
+			<Button.Group type='primary'>
+				<Button icon={<Plus />}>Previous Page</Button>
+				<Button>
 					Next Page
 					<Plus className='h-icon--right' />
 				</Button>
@@ -263,6 +262,7 @@ export default App
 # 加载状态按钮
 
 ```tsx
+import { Plus } from '@hard-ui/icons'
 import { Button } from 'hard-ui'
 import React from 'react'
 
@@ -270,7 +270,12 @@ const App: React.FC = () => {
 	return (
 		<div>
 			<div className='mb-4'>
-				<Button type='primary' loading></Button>
+				<Button type='primary' loading>
+					Primary
+				</Button>
+				<Button type='primary' loading icon={<Plus />}>
+					Primary
+				</Button>
 			</div>
 		</div>
 	)
@@ -278,3 +283,61 @@ const App: React.FC = () => {
 
 export default App
 ```
+
+# 调整尺寸​
+
+除了默认的大小，按钮组件还提供了几种额外的尺寸可供选择，以便适配不同的场景。
+
+使用 `size` 属性额外配置尺寸，可使用 `large` 和 `small` 两种值。
+
+```tsx
+import { Plus, Search } from '@hard-ui/icons'
+import { Button } from 'hard-ui'
+import React from 'react'
+
+const App: React.FC = () => {
+	return (
+		<div>
+			<div className='mb-10'>
+				<Button size='large'>Large</Button>
+				<Button>Default</Button>
+				<Button size='small'>Small</Button>
+				<Button size='large' icon={<Search />}>
+					Search
+				</Button>
+				<Button icon={<Search />}>Search</Button>
+				<Button size='small' icon={<Search />}>
+					Search
+				</Button>
+			</div>
+			<div className='mb-10'>
+				<Button size='large' round>
+					Large
+				</Button>
+				<Button round>Default</Button>
+				<Button size='small' round>
+					Small
+				</Button>
+				<Button size='large' icon={<Search />} round>
+					Search
+				</Button>
+				<Button icon={<Search />} round>
+					Search
+				</Button>
+				<Button size='small' icon={<Search />} round>
+					Search
+				</Button>
+			</div>
+			<div>
+				<Button icon={<Search />} size='large' circle />
+				<Button icon={<Search />} circle />
+				<Button icon={<Search />} size='small' circle />
+			</div>
+		</div>
+	)
+}
+
+export default App
+```
+
+<!-- <API id="Button"></API> -->

@@ -31,7 +31,7 @@ export default defineConfig([
 				sourcemap: true
 			}
 		],
-		external: ['@hard-ui/icons', '@hard-ui/theme-chalk', 'classnames', 'react'],
+		external: ['@hard-ui/icons', '@hard-ui/theme-chalk', 'classnames', 'react', 'radash'],
 		plugins: [
 			resolve(),
 			commonjs(),

@@ -26,7 +26,7 @@ $button-icon-span-gap: map.merge(
 	align-items: center;
 
 	line-height: 1;
-	height: 32px;
+	height: map.get($input-height, 'default');
 	white-space: nowrap;
 	cursor: pointer;
 	text-align: center;
@@ -96,11 +96,9 @@ $button-icon-span-gap: map.merge(
 	}
 
 	@include when(circle) {
+		width: map.get($input-height, 'default');
 		border-radius: getCssVar('border-radius', 'circle');
-		-webkit-border-radius: getCssVar('border-radius', 'circle');
-		-moz-border-radius: getCssVar('border-radius', 'circle');
-		-ms-border-radius: getCssVar('border-radius', 'circle');
-		-o-border-radius: getCssVar('border-radius', 'circle');
+		padding: map.get($button-padding-vertical, 'default') - $button-border-width;
 	}
 
 	@include when(disabled) {
@@ -144,11 +142,55 @@ $button-icon-span-gap: map.merge(
 		}
 	}
 
-	// font-size: $font-size;
-	// border-radius: $border-radius;
+	@include when(loading) {
+		pointer-events: none;
+		position: relative;
+
+		&::before {
+			z-index: 1;
+			pointer-events: none;
+			content: '';
+			position: absolute;
+			left: -1px;
+			top: -1px;
+			right: -1px;
+			bottom: -1px;
+			border-radius: inherit;
+			background-color: getCssVar('mask-color', 'extra-light');
+		}
+	}
+
 	@each $type in (primary, success, warning, danger, info) {
 		@include m($type) {
 			@include button-variant($type);
+		}
+	}
+
+	@each $size in (large, small) {
+		@include m($size) {
+			@include set-css-var-value(('button', 'size'), map.get($input-height, $size));
+
+			height: getCssVar('button', 'size');
+
+			& [class*='#{$namespace}-icon'] {
+				& + span {
+					margin-left: map.get($button-icon-span-gap, $size);
+				}
+			}
+
+			& {
+				@include button-size(
+					map.get($button-padding-vertical, $size) - $button-border-width,
+					map.get($button-padding-horizontal, $size) - $button-border-width,
+					map.get($button-font-size, $size),
+					map.get($button-border-radius, $size)
+				);
+			}
+
+			@include when(circle) {
+				width: getCssVar('button', 'size');
+				padding: map.get($button-padding-vertical, $size) - $button-border-width;
+			}
 		}
 	}
 }
