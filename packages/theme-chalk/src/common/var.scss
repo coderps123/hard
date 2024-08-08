@@ -104,6 +104,7 @@ $fill-color: map.merge(
 // Border
 $border-width: 1px !default;
 $border-style: solid !default;
+$border-color-hover: getCssVar('text-color', 'disabled') !default;
 
 $border-color: () !default;
 $border-color: map.merge(
@@ -237,4 +238,41 @@ $button-padding-horizontal: map.merge(
 		'small': 12px
 	),
 	$button-padding-horizontal
+);
+
+// Input
+$input: () !default;
+$input: map.merge(
+	(
+		'text-color': getCssVar('text-color-regular'),
+		'border': getCssVar('border'),
+		'border-color': getCssVar('border-color'),
+		'bg-color': getCssVar('fill-color', 'blank'),
+		'border-radius': getCssVar('border-radius-base'),
+		'hover-border-color': getCssVar('border-color-hover'),
+		'focus-border-color': getCssVar('color-primary'),
+		'width': 100%
+	),
+	$input
+);
+
+$input-disabled: () !default;
+$input-disabled: map.merge(
+	(
+		'fill': getCssVar('disabled-bg-color'),
+		'border': getCssVar('disabled-border-color'),
+		'text-color': getCssVar('disabled-text-color'),
+		'placeholder-color': getCssVar('text-color-placeholder')
+	),
+	$input-disabled
+);
+
+$input-padding-horizontal: () !default;
+$input-padding-horizontal: map.merge(
+	(
+		'large': 16px,
+		'default': 12px,
+		'small': 8px
+	),
+	$input-padding-horizontal
 );
