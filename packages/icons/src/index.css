@@ -1,3 +1,6 @@
-.h-icon svg {
-	vertical-align: middle;
+.h-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
 }

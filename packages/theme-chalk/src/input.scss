@@ -3,6 +3,7 @@
 @use './mixins/_var.scss' as *;
 @use './mixins/function.scss' as *;
 @use 'sass:map';
+@use './common/config.scss' as *;
 
 @include b(input) {
 	@include set-component-css-var('input', $input);
@@ -42,10 +43,20 @@
 
 		&:hover {
 			box-shadow: 0 0 0 1px getCssVar('input-hover-border-color');
+
+			@include b(input__suffix) {
+				padding-left: 8px;
+				display: inline-flex;
+				justify-content: center;
+			}
 		}
 
 		@include b(input__inner) {
-			@include set-css-var-value('input-inner-height', map.get($input-height, 'default') - $border-width * 2);
+			@include set-css-var-value(
+				'input-inner-height',
+				calc(var(getVarName('input-height'), #{map.get($input-height, 'default')}) - $border-width * 2)
+			);
+
 			flex-grow: 1;
 			height: getCssVar('input-inner-height');
 			line-height: getCssVar('input-inner-height');
@@ -57,11 +68,58 @@
 			background: none;
 			box-sizing: border-box;
 		}
+
+		@include b(input__suffix) {
+			display: none;
+			&:has([class*='#{$namespace}-input__suffix-inner']) {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding-left: 8px;
+			}
+		}
+	}
+
+	.#{$namespace}-input__addon-before,
+	.#{$namespace}-input__addon-after {
+		background-color: getCssVar('fill-color-lighter');
+		box-shadow: 0 0 0 1px getCssVar('input-border-color');
+		padding: $border-width map.get($input-padding-horizontal, 'default') - $border-width;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: getCssVar('input-border-radius');
+	}
+
+	@include b(input__addon-before) {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	@include b(input__addon-after) {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+
+	.#{$namespace}-input__addon-before ~ .#{$namespace}-input__wrapper {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+	&:has([class*='#{$namespace}-input__addon-after']) {
+		& .#{$namespace}-input__wrapper {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
 	}
 
 	@include when(focus) {
 		@include b(input__wrapper) {
 			box-shadow: 0 0 0 1px getCssVar('input', 'focus-border-color');
+		}
+	}
+
+	@each $size in (large, small) {
+		@include m($size) {
+			@include css-var-from-global('input-height', ('component-size', $size));
 		}
 	}
 }

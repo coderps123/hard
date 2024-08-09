@@ -9,6 +9,9 @@
 	@each $type in (primary, success, warning, danger, error, info) {
 		@include set-css-color-type($colors, $type);
 	}
+
+	// common component size
+	@include set-component-css-var('component-size', $common-component-size);
 }
 
 :root {

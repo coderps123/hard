@@ -12,6 +12,7 @@ export interface IconBaseProps {
 	height?: number | string
 	fill?: string
 	viewBox?: string
+	onClick?: React.MouseEventHandler
 }
 
 export interface IconProps extends Omit<IconBaseProps, 'icon'> {}

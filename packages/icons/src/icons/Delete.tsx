@@ -1,4 +1,7 @@
+import classNames from 'classnames'
+import { omit } from 'radash'
 import React from 'react'
+import { NAME_SPACE } from '../../config'
 import IconBase, { IconProps } from '../components/IconBase'
 import '../index.css'
 
@@ -11,7 +14,8 @@ const Svg = (props: IconProps) => {
 }
 
 const InternalSvg: React.ForwardRefRenderFunction<HTMLSpanElement, Omit<IconProps, 'ref'>> = (props, ref) => {
-	return <IconBase icon={Svg} {...props} ref={ref} />
+	const className = classNames(props.className, `${NAME_SPACE}-icon-delete`)
+	return <IconBase icon={Svg} {...omit(props, ['className'])} className={className} ref={ref} />
 }
 
 const Delete: React.ForwardRefExoticComponent<Omit<IconProps, 'ref'> & React.RefAttributes<HTMLSpanElement>> =
