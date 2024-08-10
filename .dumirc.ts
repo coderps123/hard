@@ -1,7 +1,7 @@
 import { defineConfig } from 'dumi'
 import path from 'path'
 
-const repo = 'hard-ui'
+const repo = 'hard' // github 仓库名称
 
 export default defineConfig({
 	title: repo,

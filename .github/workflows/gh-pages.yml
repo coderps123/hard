@@ -31,7 +31,5 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          branch: build # 打包的内容放到build分支下
-          folder: docs-dist
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs-dist
