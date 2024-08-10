@@ -1,8 +1,13 @@
 import { defineConfig } from 'dumi'
 import path from 'path'
 
+const repo = 'hard-ui'
+
 export default defineConfig({
+	title: repo,
 	outputPath: 'docs-dist',
+	base: process.env.NODE_ENV === 'production' ? `/${repo}/` : '/',
+	publicPath: process.env.NODE_ENV === 'production' ? `/${repo}/` : '/',
 	themeConfig: {
 		name: 'hard-ui',
 		nav: [{ title: '介绍', link: '/guide' }]
