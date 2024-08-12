@@ -6,8 +6,11 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { ButtonSizeType } from '../button/ButtonHelpers'
 import './style'
 
-interface InputProps {
+type InputType = 'text' | 'password' | 'textarea'
+
+export interface InputProps {
 	value?: string | number
+	type?: InputType
 	className?: string
 	style?: React.CSSProperties
 	placeholder?: string
@@ -16,15 +19,18 @@ interface InputProps {
 	showCount?: boolean
 	maxLength?: number
 	size?: ButtonSizeType
+	suffix?: (() => React.JSX.Element) | null
 	addonAfter?: React.ReactNode
 	addonBefore?: React.ReactNode
 	onBlur?: React.FocusEventHandler<HTMLInputElement>
 	onFocus?: React.FocusEventHandler<HTMLInputElement>
 	onChange?: React.FocusEventHandler<HTMLInputElement>
 	onInput?: React.FocusEventHandler<HTMLInputElement>
+	onAddonBeforeClick?: React.MouseEventHandler<HTMLElement>
+	onAddonAfterClick?: React.MouseEventHandler<HTMLElement>
 }
 
-const InternalInput: React.ForwardRefRenderFunction<HTMLInputElement, Omit<InputProps, 'ref'>> = (props, ref) => {
+const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 	const [value, setValue] = useState<string | number>(props.value || '')
 
 	const [focus, setFocus] = useState<boolean>(false)
@@ -57,13 +63,15 @@ const InternalInput: React.ForwardRefRenderFunction<HTMLInputElement, Omit<Input
 			evt.preventDefault()
 			return false
 		}
-		if (props.maxLength && evt.target.value.length <= props?.maxLength) {
-			setValue(evt.target.value)
-		} else {
-			setValue(evt.target.value)
-		}
 		if (isFunction(props.onChange)) {
 			props?.onChange(evt)
+		}
+		if (props.maxLength) {
+			if (evt.target.value.length <= props?.maxLength) {
+				setValue(evt.target.value)
+			}
+		} else {
+			setValue(evt.target.value)
 		}
 	}
 	const handleInput = (evt: React.FocusEvent<HTMLInputElement>) => {
@@ -72,13 +80,15 @@ const InternalInput: React.ForwardRefRenderFunction<HTMLInputElement, Omit<Input
 			evt.preventDefault()
 			return false
 		}
-		if (props.maxLength && evt.target.value.length <= props?.maxLength) {
-			setValue(evt.target.value)
-		} else {
-			setValue(evt.target.value)
-		}
 		if (isFunction(props.onInput)) {
 			props?.onInput(evt)
+		}
+		if (props.maxLength) {
+			if (evt.target.value.length <= props?.maxLength) {
+				setValue(evt.target.value)
+			}
+		} else {
+			setValue(evt.target.value)
 		}
 	}
 
@@ -98,13 +108,21 @@ const InternalInput: React.ForwardRefRenderFunction<HTMLInputElement, Omit<Input
 		// 清除内容
 		setValue('')
 	}, [])
-	// 后缀
+	// 后缀图标
 	const suffixNode = useMemo(() => {
 		const className = classNames(`${NAME_SPACE}-input__suffix`)
 		if (!props.disabled && props.clearable) {
 			return (
 				<span className={className}>
 					<CircleClose onClick={handleClose} />
+				</span>
+			)
+		}
+		if (!props.disabled && props.suffix) {
+			const SuffixIcon = props.suffix
+			return (
+				<span className={className}>
+					<SuffixIcon />
 				</span>
 			)
 		}
@@ -121,17 +139,45 @@ const InternalInput: React.ForwardRefRenderFunction<HTMLInputElement, Omit<Input
 			)
 		}
 		return null
-	}, [props.disabled, props.maxLength, value, props.clearable, handleClose])
+	}, [props.disabled, props.suffix, props.maxLength, value, props.clearable, handleClose])
 
+	const handleAddonBeforeClick = (evt: React.MouseEvent<HTMLElement>) => {
+		if (props.disabled) {
+			evt.stopPropagation()
+			evt.preventDefault()
+			return false
+		}
+		if (isFunction(props.onAddonBeforeClick)) {
+			props?.onAddonBeforeClick(evt)
+		}
+	}
 	const addonBeforeNode = useMemo(() => {
 		return (
-			props.addonBefore && <span className={classNames(`${NAME_SPACE}-input__addon-before`)}>{props.addonBefore}</span>
+			props.addonBefore && (
+				<span className={classNames(`${NAME_SPACE}-input__addon-before`)} onClick={handleAddonBeforeClick}>
+					{props.addonBefore}
+				</span>
+			)
 		)
 	}, [props.addonBefore])
 
+	const handleAddonAfterClick = (evt: React.MouseEvent<HTMLElement>) => {
+		if (props.disabled) {
+			evt.stopPropagation()
+			evt.preventDefault()
+			return false
+		}
+		if (isFunction(props.onAddonAfterClick)) {
+			props?.onAddonAfterClick(evt)
+		}
+	}
 	const addonAfterNode = useMemo(() => {
 		return (
-			props.addonAfter && <span className={classNames(`${NAME_SPACE}-input__addon-after`)}>{props.addonAfter}</span>
+			props.addonAfter && (
+				<span className={classNames(`${NAME_SPACE}-input__addon-after`)} onClick={handleAddonAfterClick}>
+					{props.addonAfter}
+				</span>
+			)
 		)
 	}, [props.addonAfter])
 
@@ -141,7 +187,7 @@ const InternalInput: React.ForwardRefRenderFunction<HTMLInputElement, Omit<Input
 			<div className={wrapperClassName}>
 				<input
 					className={innerClassName}
-					type='text'
+					type={props.type ?? 'text'}
 					ref={ref}
 					value={value}
 					placeholder={props.placeholder}
@@ -156,9 +202,6 @@ const InternalInput: React.ForwardRefRenderFunction<HTMLInputElement, Omit<Input
 			{addonAfterNode}
 		</div>
 	)
-}
-
-const Input: React.ForwardRefExoticComponent<Omit<InputProps, 'ref'> & React.RefAttributes<HTMLInputElement>> =
-	React.forwardRef(InternalInput)
+})
 
 export default Input

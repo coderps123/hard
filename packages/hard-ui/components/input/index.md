@@ -1,6 +1,6 @@
 ---
 category: Components
-title: Input 输入框 # 组件的标题，会在菜单侧边栏展示
+title: Input # 组件的标题，会在菜单侧边栏展示
 toc: content # 在页面右侧展示锚点链接
 group: # 分组
   title: 基础组件 # 所在分组的名称
@@ -102,4 +102,73 @@ export default App
 
 使用 `size` 属性改变输入框大小。 除了默认大小外，还有另外两个选项： `large`, `small`。
 
+```tsx
+import { Search } from '@hard-ui/icons'
+import { Input } from 'hard-ui'
+import React from 'react'
+
+const App: React.FC = () => {
+	return (
+		<div>
+			<div>
+				<Input style={{ width: '340px', marginTop: '10px' }} size='large' placeholder='Please Input' />
+				<Input style={{ width: '340px', marginTop: '10px', marginLeft: '10px' }} placeholder='Please Input' />
+				<Input
+					style={{ width: '340px', marginTop: '10px', marginLeft: '10px' }}
+					size='small'
+					placeholder='Please Input'
+				/>
+			</div>
+			<div>
+				<Input
+					style={{ width: '340px', marginTop: '10px' }}
+					size='large'
+					placeholder='Please Input'
+					addonBefore='http://'
+					addonAfter='.com'
+				/>
+				<Input
+					v-model='input1'
+					style={{ width: '340px', marginTop: '10px', marginLeft: '10px' }}
+					placeholder='Please Input'
+					addonBefore='http://'
+					addonAfter='.com'
+				/>
+				<Input
+					style={{ width: '340px', marginTop: '10px', marginLeft: '10px' }}
+					size='small'
+					placeholder='Please Input'
+					addonAfter={<Search />}
+				/>
+			</div>
+		</div>
+	)
+}
+
+export default App
+```
+
+## 密码框
+
 <code src="./demo/index.tsx"></code>
+
+## Input API
+
+| 属性名    | 说明                   | 类型                | 默认值 |
+| --------- | ---------------------- | ------------------- | ------ |
+| type      | 类型                   | enum                | --     |
+| size      | 尺寸                   | enum                | --     |
+| plain     | 是否为朴素按钮         | boolean             | false  |
+| text      | 是否为文字按钮         | boolean             | false  |
+| bg        | 是否显示文字按钮背景色 | boolean             | false  |
+| link      | 是否为连接按钮         | boolean             | false  |
+| round     | 是否为圆角按钮         | boolean             | false  |
+| circle    | 是否为圆形按钮         | boolean             | false  |
+| loading   | 是否为加载中状态       | boolean             | false  |
+| disabled  | 是否禁用               | boolean             | false  |
+| icon      | 图标组件               | string / Component  | --     |
+| htmlType  | 原生 `type` 属性       | enum                | button |
+| onClick   | 点击事件               | Functon             | --     |
+| children  | 子组件                 | Component           | --     |
+| className | css 类名               | string              | --     |
+| style     | css 样式               | React.CSSProperties | --     |

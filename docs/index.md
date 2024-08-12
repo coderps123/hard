@@ -1,6 +1,6 @@
 ---
 hero:
-  title: Element Plus React
+  title: Hard-ui
   description: A Eeact UI Library
   actions:
     - text: Get Start

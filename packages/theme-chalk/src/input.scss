@@ -34,7 +34,9 @@
 
 	@include b(input__wrapper) {
 		display: inline-flex;
-		flex-grow: 1;
+		align-items: center;
+		justify-content: center;
+		flex: 1;
 		background-color: getCssVar('input-bg-color');
 		background-image: none;
 		padding: $border-width map.get($input-padding-horizontal, 'default') - $border-width;
@@ -47,7 +49,6 @@
 			@include b(input__suffix) {
 				padding-left: 8px;
 				display: inline-flex;
-				justify-content: center;
 			}
 		}
 
@@ -67,15 +68,23 @@
 			outline: none;
 			background: none;
 			box-sizing: border-box;
+
+			width: 100%;
 		}
 
 		@include b(input__suffix) {
-			display: none;
+			// display: none;
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+
 			&:has([class*='#{$namespace}-input__suffix-inner']) {
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
 				padding-left: 8px;
+				flex-shrink: 0;
+				flex-wrap: nowrap;
 			}
 		}
 	}
@@ -83,21 +92,28 @@
 	.#{$namespace}-input__addon-before,
 	.#{$namespace}-input__addon-after {
 		background-color: getCssVar('fill-color-lighter');
-		box-shadow: 0 0 0 1px getCssVar('input-border-color');
+		color: getCssVar('color-info');
 		padding: $border-width map.get($input-padding-horizontal, 'default') - $border-width;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		border-radius: getCssVar('input-border-radius');
+		cursor: pointer;
 	}
 
 	@include b(input__addon-before) {
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
+		box-shadow: 0 0 0 1px getCssVar('input-border-color');
 	}
 	@include b(input__addon-after) {
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
+		box-shadow:
+			1px 0 0 0 getCssVar('input-border-color'),
+			0 1px 0 0 getCssVar('input-border-color'),
+			0 -1px 0 0 getCssVar('input-border-color');
+		margin-left: 1px;
 	}
 
 	.#{$namespace}-input__addon-before ~ .#{$namespace}-input__wrapper {

@@ -1,6 +1,8 @@
 export { default as CircleClose } from './CircleClose'
 export { default as Delete } from './Delete'
 export { default as Edit } from './Edit'
+export { default as Hide } from './Hide'
 export { default as Loading } from './Loading'
 export { default as Plus } from './Plus'
 export { default as Search } from './Search'
+export { default as View } from './View'

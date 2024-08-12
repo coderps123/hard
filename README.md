@@ -41,3 +41,9 @@ $ pnpm run doctor
 ## LICENSE
 
 MIT
+
+```js
+function get() {
+	sssssssssssssssssssssss = 1
+}
+```
