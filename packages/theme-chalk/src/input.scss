@@ -13,6 +13,7 @@
 	width: getCssVar('input-width');
 	box-sizing: border-box;
 	display: inline-flex;
+	font-size: getCssVar('font-size', 'base');
 
 	@include when(disabled) {
 		cursor: not-allowed;
@@ -135,7 +136,53 @@
 
 	@each $size in (large, small) {
 		@include m($size) {
+			font-size: getCssVar('font-size', $size);
+
 			@include css-var-from-global('input-height', ('component-size', $size));
+		}
+	}
+}
+
+@include b(textarea) {
+	@include set-component-css-var('input', $input);
+
+	box-sizing: border-box;
+	display: inline-flex;
+	flex-direction: column;
+	@include b(textarea__inner) {
+		display: flex;
+		border: none;
+		outline: none;
+		flex: 1;
+		resize: vertical;
+		font-size: getCssVar('font-size', 'base');
+
+		box-shadow: 0 0 0 1px getCssVar('input-border-color');
+		padding: 5px map.get($input-padding-horizontal, 'default') - $border-width;
+		border-radius: getCssVar('input-border-radius');
+
+		&:focus {
+			box-shadow: 0 0 0 1px getCssVar('input', 'focus-border-color');
+		}
+	}
+
+	@include b(textarea__suffix) {
+		height: 20px;
+
+		@include b(textarea__count-inner) {
+			float: right;
+			font-size: small;
+			color: getCssVar('text-color', 'placeholder');
+		}
+	}
+
+	@include when(disabled) {
+		cursor: not-allowed;
+		color: map.get($input-disabled, 'text-color');
+
+		@include b(textarea__inner) {
+			cursor: not-allowed;
+			background-color: map.get($input-disabled, 'fill');
 		}
 	}
 }

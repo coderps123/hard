@@ -1,53 +1,62 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { NAME_SPACE } from '@hard-ui/hard-ui/config'
-import { Hide, View } from '@hard-ui/icons'
 import classNames from 'classnames'
-import { omit } from 'radash'
+import { isFunction, omit } from 'radash'
 import Input, { InputProps } from './Input'
+import { Hide, View } from '@hard-ui/icons'
 
 interface VisibilityToggle {
 	visible?: boolean
-	onVisibilityChange?: (visible: boolean) => void
+	onVisibleChange?: (visible: boolean) => void
 }
 
-type IconStateToggle = 'view' | 'hide'
-
-const defaultIconRender = (iconStateToggle: IconStateToggle) => (iconStateToggle === 'view' ? View : Hide)
+const defaultIconRender = (visible: boolean): React.ReactNode => (visible ? <View /> : <Hide />)
 
 export interface PasswordProps extends InputProps {
 	/**
 	 * 是否显示切换图标
 	 */
 	visibilityToggle?: boolean | VisibilityToggle
-	iconRender: (iconStateToggle: IconStateToggle) => React.ReactNode
+	iconRender?: (visible: boolean) => React.ReactNode
 }
 
 const Password = React.forwardRef<HTMLInputElement, PasswordProps>((props, ref) => {
-	// const { visibilityToggle = true, iconRender =  } = props
-	const { visibilityToggle = true, iconRender = defaultIconRender } = props
+	const { disabled, visibilityToggle = true, iconRender = defaultIconRender } = props
 
 	const visibilityContronlled = typeof visibilityToggle === 'object' && visibilityToggle.visible !== undefined
-	const [visible] = useState(() => (visibilityContronlled ? visibilityToggle.visible : visibilityToggle))
+	const [visible, setVisible] = useState(() => (visibilityContronlled ? visibilityToggle.visible! : false))
 
-	// 切换图标的状态
-	const [iconStateToggle] = useState<IconStateToggle>('hide')
+	useEffect(() => {
+		if (visibilityContronlled) {
+			if (isFunction(visibilityToggle.onVisibleChange)) {
+				visibilityToggle.onVisibleChange(visible)
+			}
+		}
+	}, [visible])
 
-	console.log(visible, visibilityContronlled)
-
-	const SuffixIcon = visible ? () => iconRender(iconStateToggle) : null
-
-	console.log(SuffixIcon)
-
-	const className = classNames(`${NAME_SPACE}-input-password`, props.className)
-	const omitProps: InputProps = {
-		...omit<PasswordProps, 'visibilityToggle'>(props, ['visibilityToggle']),
-		type: 'password',
-		className
-		// suffix: SuffixIcon
+	const getIcon = () => {
+		const icon = iconRender(visible)
+		const iconProps = {
+			onClick: () => {
+				if (disabled) return
+				setVisible(!visible)
+			}
+		}
+		return React.cloneElement(React.isValidElement(icon) ? icon : <span>{icon}</span>, iconProps)
 	}
 
-	return <Input {...omitProps} ref={ref} />
+	const suffixIcon = getIcon()
+
+	const className = classNames(`${NAME_SPACE}-input-password`, props.className)
+	const omitedProps: InputProps = {
+		...omit(props, ['visibilityToggle']),
+		type: visible ? 'text' : 'password',
+		className,
+		suffix: suffixIcon
+	}
+
+	return <Input {...omitedProps} ref={ref} />
 })
 
 export default Password

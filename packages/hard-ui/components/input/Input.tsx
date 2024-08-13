@@ -6,11 +6,9 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { ButtonSizeType } from '../button/ButtonHelpers'
 import './style'
 
-type InputType = 'text' | 'password' | 'textarea'
-
-export interface InputProps {
+export interface InputProps<T = HTMLInputElement> {
 	value?: string | number
-	type?: InputType
+	type?: React.HTMLInputTypeAttribute
 	className?: string
 	style?: React.CSSProperties
 	placeholder?: string
@@ -19,13 +17,13 @@ export interface InputProps {
 	showCount?: boolean
 	maxLength?: number
 	size?: ButtonSizeType
-	suffix?: (() => React.JSX.Element) | null
+	suffix?: React.ReactNode
 	addonAfter?: React.ReactNode
 	addonBefore?: React.ReactNode
-	onBlur?: React.FocusEventHandler<HTMLInputElement>
-	onFocus?: React.FocusEventHandler<HTMLInputElement>
-	onChange?: React.FocusEventHandler<HTMLInputElement>
-	onInput?: React.FocusEventHandler<HTMLInputElement>
+	onBlur?: React.FocusEventHandler<T>
+	onFocus?: React.FocusEventHandler<T>
+	onChange?: React.FocusEventHandler<T>
+	onInput?: React.FocusEventHandler<T>
 	onAddonBeforeClick?: React.MouseEventHandler<HTMLElement>
 	onAddonAfterClick?: React.MouseEventHandler<HTMLElement>
 }
@@ -119,12 +117,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 			)
 		}
 		if (!props.disabled && props.suffix) {
-			const SuffixIcon = props.suffix
-			return (
-				<span className={className}>
-					<SuffixIcon />
-				</span>
-			)
+			return <span className={className}>{props.suffix}</span>
 		}
 		if (!props.disabled && props.showCount) {
 			const countInner = props.maxLength ? `${(value + '').length} / ${props.maxLength}` : (value + '').length
