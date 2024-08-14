@@ -122,7 +122,7 @@ $border-color: map.merge(
 $border-radius: () !default;
 $border-radius: map.merge(
 	(
-		'base': 4px,
+		'base': 2px,
 		'small': 2px,
 		'round': 20px,
 		'circle': 100%

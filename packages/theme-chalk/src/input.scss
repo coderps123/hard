@@ -146,14 +146,16 @@
 @include b(textarea) {
 	@include set-component-css-var('input', $input);
 
+	position: relative;
 	box-sizing: border-box;
-	display: inline-flex;
 	flex-direction: column;
+	resize: vertical;
 	@include b(textarea__inner) {
 		display: flex;
 		border: none;
 		outline: none;
-		flex: 1;
+		width: 100%;
+		box-sizing: border-box;
 		resize: vertical;
 		font-size: getCssVar('font-size', 'base');
 
@@ -166,14 +168,20 @@
 		}
 	}
 
-	@include b(textarea__suffix) {
-		height: 20px;
+	&::after {
+		float: right;
+		color: getCssVar('text-color', 'placeholder');
+		font-size: small;
+		white-space: nowrap;
+		content: attr(data-count);
+		pointer-events: none;
+		box-sizing: border-box;
+	}
 
-		@include b(textarea__count-inner) {
-			float: right;
-			font-size: small;
-			color: getCssVar('text-color', 'placeholder');
-		}
+	@include b(textarea__suffix) {
+		position: absolute;
+		right: 5px;
+		top: 5px;
 	}
 
 	@include when(disabled) {

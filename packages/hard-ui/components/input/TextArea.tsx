@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { InputProps } from './Input'
 import classNames from 'classnames'
 import { NAME_SPACE } from '@hard-ui/hard-ui/config'
 import { isFunction } from 'radash'
+import { CircleClose } from '@hard-ui/icons'
 
 export interface TextAreaProps
 	extends Omit<
@@ -74,14 +75,9 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>((props, re
 		}
 	}
 
-	const countNode = useMemo(() => {
+	const countInner = useMemo(() => {
 		if (showCount) {
-			const countInner = maxLength ? `${(value + '').length} / ${maxLength}` : (value + '').length
-			return maxLength ? (
-				<span className={classNames(`${NAME_SPACE}-textarea__suffix`)}>
-					<span className={classNames(`${NAME_SPACE}-textarea__count-inner`)}>{countInner}</span>
-				</span>
-			) : null
+			return maxLength ? (maxLength ? `${(value + '').length} / ${maxLength}` : (value + '').length) : ''
 		}
 	}, [showCount, maxLength, value])
 
@@ -99,15 +95,31 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>((props, re
 	)
 	const innerClassName = classNames(`${NAME_SPACE}-textarea__inner`)
 
+	const handleClose = useCallback(() => {
+		// 清除内容
+		setValue('')
+	}, [])
+
+	// 后缀图标
+	const suffixNode = useMemo(() => {
+		const className = classNames(`${NAME_SPACE}-textarea__suffix`)
+		if (!props.disabled && props.clearable) {
+			return (
+				<span className={className}>
+					<CircleClose onClick={handleClose} />
+				</span>
+			)
+		}
+		return null
+	}, [props.disabled, props.suffix, props.maxLength, value, props.clearable, handleClose])
+
 	return (
-		<div className={className} style={props.style}>
+		<div className={className} style={props.style} data-count={countInner}>
 			<textarea
 				value={value}
 				className={innerClassName}
 				ref={ref}
-				name=''
-				id=''
-				rows={10}
+				rows={4}
 				placeholder={props.placeholder}
 				disabled={props.disabled}
 				onBlur={handleBlur}
@@ -115,7 +127,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>((props, re
 				onChange={handleChange}
 				onInput={handleInput}
 			></textarea>
-			{countNode}
+			{suffixNode}
 		</div>
 	)
 })
