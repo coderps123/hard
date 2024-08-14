@@ -1,6 +1,5 @@
-import { NAME_SPACE } from '@hard-ui/hard-ui/config'
-import classNames from 'classnames'
 import React from 'react'
+import styled from 'styled-components'
 
 export interface SwitchProps {
 	className?: string
@@ -9,12 +8,25 @@ export interface SwitchProps {
 }
 
 const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>((props, ref) => {
-	const className = classNames(`${NAME_SPACE}-switch`, props.className)
+	console.log(props, ref)
+
+	const WrapComp = styled.button`
+		min-width: 60px;
+		padding: 0;
+		border: 1px solid red;
+		> span {
+			display: inline-flex;
+			width: 14px;
+			height: 14px;
+			background-color: #ffffff;
+			border-radius: 50px;
+		}
+	`
 
 	return (
-		<button className={className} type='button' ref={ref}>
-			<div></div>
-		</button>
+		<WrapComp className='h-switch'>
+			<span className='h-switch-handle'></span>
+		</WrapComp>
 	)
 })
 

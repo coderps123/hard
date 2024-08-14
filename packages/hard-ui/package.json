@@ -17,7 +17,8 @@
 	},
 	"dependencies": {
 		"@hard-ui/icons": "workspace:^",
-		"@hard-ui/theme-chalk": "workspace:^"
+		"@hard-ui/theme-chalk": "workspace:^",
+		"styled-components": "^6.1.12"
 	},
 	"peerDependencies": {
 		"classnames": ">=2.5.1",
