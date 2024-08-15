@@ -5,8 +5,13 @@ const App: React.FC = () => {
 	return (
 		<div>
 			<div className='mb-4'>
-				<Button type='primary' loading>
-					Primary
+				<Button type='primary'>Primary</Button>
+				<Button style={{ marginLeft: '20px' }}>Default</Button>
+				<Button style={{ marginLeft: '20px' }} type='dashed'>
+					Dashed
+				</Button>
+				<Button style={{ marginLeft: '20px' }} type='text'>
+					Text
 				</Button>
 			</div>
 		</div>

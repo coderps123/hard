@@ -1,4 +1,4 @@
-const ButtonTypes = ['primary', 'default', 'dashed', 'text'] as const
+const ButtonTypes = ['default', 'primary', 'success', 'info', 'warning', 'danger'] as const
 export type Buttontype = (typeof ButtonTypes)[number]
 
 const ButtonHTMLTypes = ['submit', 'button', 'reset'] as const

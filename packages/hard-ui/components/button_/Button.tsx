@@ -7,8 +7,6 @@ import ButtonGroup, { ButtonGroupContext } from './ButtonGroup'
 import { ButtonHTMLType, ButtonSizeType, Buttontype } from './ButtonHelpers'
 import './style'
 
-import { useStyle } from './style'
-
 interface ButtonProps {
 	type?: Buttontype
 	className?: string
@@ -28,11 +26,14 @@ interface ButtonProps {
 }
 
 const InternalButton: React.ForwardRefRenderFunction<HTMLButtonElement, Omit<ButtonProps, 'ref'>> = (props, ref) => {
-	const { type, disabled, htmlType = 'button' } = props
+	const { htmlType = 'button' } = props
 
 	const buttonGroupContext = useContext(ButtonGroupContext)
 
-	const buttonType = useMemo(() => type ?? buttonGroupContext?.type ?? 'default', [type, buttonGroupContext?.type])
+	const buttonType = useMemo(
+		() => props.type ?? buttonGroupContext?.type ?? 'default',
+		[props.type, buttonGroupContext?.type]
+	)
 	const buttonSize = useMemo(
 		() => props.size ?? buttonGroupContext?.size ?? 'default',
 		[props.size, buttonGroupContext?.size]
@@ -46,14 +47,13 @@ const InternalButton: React.ForwardRefRenderFunction<HTMLButtonElement, Omit<But
 			'is-plain': props.plain,
 			'is-round': props.round,
 			'is-circle': props.circle,
-			'is-disabled': disabled,
+			'is-disabled': props.disabled,
 			'is-text': props.text,
 			'is-has-bg': props.bg,
 			'is-loading': props.loading
 		},
 		props.className
 	)
-	console.log(className)
 
 	const handleClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
 		if (isFunction(props.onClick)) {
@@ -65,14 +65,12 @@ const InternalButton: React.ForwardRefRenderFunction<HTMLButtonElement, Omit<But
 
 	const children = props.children && <span>{props.children}</span>
 
-	const { StyledButton } = useStyle(buttonType, disabled)
-
 	return (
 		// eslint-disable-next-line react/button-has-type
-		<StyledButton ref={ref} style={props.style} type={htmlType} onClick={handleClick}>
+		<button ref={ref} className={className} style={props.style} type={htmlType} onClick={handleClick}>
 			{iconNode}
 			{children}
-		</StyledButton>
+		</button>
 	)
 }
 

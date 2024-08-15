@@ -10,7 +10,7 @@ export interface SwitchProps {
 const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>((props, ref) => {
 	console.log(props, ref)
 
-	const WrapComp = styled.button`
+	const StyledButton = styled.button`
 		min-width: 60px;
 		padding: 0;
 		border: 1px solid red;
@@ -24,9 +24,9 @@ const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>((props, ref) => 
 	`
 
 	return (
-		<WrapComp className='h-switch'>
+		<StyledButton className='h-switch'>
 			<span className='h-switch-handle'></span>
-		</WrapComp>
+		</StyledButton>
 	)
 })
 

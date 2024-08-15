@@ -13,7 +13,76 @@ group: # 分组
 
 ## 基础用法
 
-<code src="./demo/basic.tsx"></code>
+使用 `type`、`plain`、`round` 和 `circle` 来定义按钮的样式。
+
+```tsx
+import { Button } from 'hard-ui'
+import { Plus, Edit, Search, Delete } from '@hard-ui/icons'
+import React from 'react'
+import './style'
+
+const App: React.FC = () => (
+	<div>
+		<div className='mb-10'>
+			<Button>Default</Button>
+			<Button type='primary'>Primary</Button>
+			<Button type='success'>Success</Button>
+			<Button type='info'>Info</Button>
+			<Button type='warning'>Warning</Button>
+			<Button type='danger'>Danger</Button>
+		</div>
+
+		<div className='mb-10'>
+			<Button plain>Plain</Button>
+			<Button type='primary' plain>
+				Primary
+			</Button>
+			<Button type='success' plain>
+				Success
+			</Button>
+			<Button type='info' plain>
+				Info
+			</Button>
+			<Button type='warning' plain>
+				Warning
+			</Button>
+			<Button type='danger' plain>
+				Danger
+			</Button>
+		</div>
+
+		<div className='mb-10'>
+			<Button round>Round</Button>
+			<Button type='primary' round>
+				Primary
+			</Button>
+			<Button type='success' round>
+				Success
+			</Button>
+			<Button type='info' round>
+				Info
+			</Button>
+			<Button type='warning' round>
+				Warning
+			</Button>
+			<Button type='danger' round>
+				Danger
+			</Button>
+		</div>
+
+		<div className='mb-10'>
+			<Button icon={<Edit />} circle />
+			<Button icon={<Edit />} type='primary' circle />
+			<Button icon={<Edit />} type='success' circle />
+			<Button icon={<Edit />} type='info' circle />
+			<Button icon={<Edit />} type='warning' circle />
+			<Button icon={<Edit />} type='danger' circle />
+		</div>
+	</div>
+)
+
+export default App
+```
 
 ## 禁用状态​
 
@@ -21,9 +90,58 @@ group: # 分组
 
 使用 `disabled` 属性来控制按钮是否为禁用状态。 该属性接受一个 `Boolean` 类型的值。
 
-<code src="./demo/disabled.tsx"></code>
+```tsx
+import { Button } from 'hard-ui'
+import React from 'react'
+import './style'
 
-<!-- ## 文字按钮​
+const App: React.FC = () => (
+	<div>
+		<div className='mb-10'>
+			<Button disabled>Default</Button>
+			<Button type='primary' disabled>
+				Primary
+			</Button>
+			<Button type='success' disabled>
+				Success
+			</Button>
+			<Button type='info' disabled>
+				Info
+			</Button>
+			<Button type='warning' disabled>
+				Warning
+			</Button>
+			<Button type='danger' disabled>
+				Danger
+			</Button>
+		</div>
+		<div>
+			<Button plain disabled>
+				Plain
+			</Button>
+			<Button type='primary' plain disabled>
+				Primary
+			</Button>
+			<Button type='success' plain disabled>
+				Success
+			</Button>
+			<Button type='info' plain disabled>
+				Info
+			</Button>
+			<Button type='warning' plain disabled>
+				Warning
+			</Button>
+			<Button type='danger' plain disabled>
+				Danger
+			</Button>
+		</div>
+	</div>
+)
+
+export default App
+```
+
+## 文字按钮​
 
 没有边框和背景色的按钮。
 
@@ -222,7 +340,7 @@ const App: React.FC = () => {
 }
 
 export default App
-``` -->
+```
 
 ## Button API
 
@@ -254,5 +372,3 @@ export default App
 | children  | 子组件   | Component           | --     |
 | className | css 类名 | string              | --     |
 | style     | css 样式 | React.CSSProperties | --     |
-
-<code src="./demo/basic.tsx"></code>
