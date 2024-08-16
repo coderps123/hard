@@ -1,0 +1,69 @@
+@use './mixins/_mixin.scss' as *;
+@use './mixins/_var.scss' as *;
+@use 'sass:map';
+@use './common/var.scss' as *;
+@use './mixins/function.scss' as *;
+@use './common/config.scss' as *;
+
+@include b(switch) {
+	--height: 24px;
+	--width: 50px;
+
+	position: relative;
+	min-width: var(--width);
+	width: fit-content;
+	height: var(--height);
+	display: inline-flex;
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+	border: none;
+	background-color: rgba(0, 0, 0, 0.45);
+	border-radius: 50px;
+	padding: 0 4px;
+	transition: background-color 0.3s cubic-bezier(0.34, 0.69, 0.1, 1);
+	color: getCssVar('color-white');
+	cursor: pointer;
+
+	@include b(switch-handle) {
+		position: absolute;
+		inset-inline-start: 4px;
+		display: inline-flex;
+		width: 15px;
+		height: 15px;
+		background-color: getCssVar('color-white');
+		border-radius: 50%;
+		transition: all 0.3s cubic-bezier(0.34, 0.69, 0.1, 1);
+	}
+
+	@include b(switch-inner) {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		inset-inline-start: calc(19px + 4px);
+		padding-left: 19px;
+		padding-right: 4px;
+	}
+
+	&.is-checked {
+		background-color: #4096ff;
+
+		@include b(switch-handle) {
+			inset-inline-start: calc(100% - 4px - 15px);
+		}
+
+		@include b(switch-inner) {
+			inset-inline-start: 4px;
+			padding-right: 19px;
+			padding-left: 4px;
+		}
+	}
+
+	&.is-disabled {
+		cursor: not-allowed;
+		background-color: getCssVar('color-info', 'light-8');
+	}
+	&.is-checked.is-disabled {
+		background-color: getCssVar('color-primary', 'light-2');
+	}
+}

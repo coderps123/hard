@@ -1,6 +1,6 @@
 ---
 category: Components
-title: Button # 组件的标题，会在菜单侧边栏展示
+title: Button Scss 实现 # 组件的标题，会在菜单侧边栏展示
 toc: content # 在页面右侧展示锚点链接
 group: # 分组
   title: 基础组件 # 所在分组的名称
@@ -16,7 +16,7 @@ group: # 分组
 使用 `type`、`plain`、`round` 和 `circle` 来定义按钮的样式。
 
 ```tsx
-import { Button } from 'hard-ui'
+import { Button_ as Button } from 'hard-ui'
 import { Plus, Edit, Search, Delete } from '@hard-ui/icons'
 import React from 'react'
 import './style'
@@ -91,7 +91,7 @@ export default App
 使用 `disabled` 属性来控制按钮是否为禁用状态。 该属性接受一个 `Boolean` 类型的值。
 
 ```tsx
-import { Button } from 'hard-ui'
+import { Button_ as Button } from 'hard-ui'
 import React from 'react'
 import './style'
 
@@ -146,7 +146,7 @@ export default App
 没有边框和背景色的按钮。
 
 ```tsx
-import { Button } from 'hard-ui'
+import { Button_ as Button } from 'hard-ui'
 import React from 'react'
 import './style'
 
@@ -200,7 +200,7 @@ export default App
 使用图标为按钮添加更多的含义。 你也可以单独使用图标不添加文字来节省显示区域占用。
 
 ```tsx
-import { Button } from 'hard-ui'
+import { Button_ as Button } from 'hard-ui'
 import { Plus, Edit, Search, Delete } from '@hard-ui/icons'
 import React from 'react'
 
@@ -229,7 +229,7 @@ export default App
 
 ```tsx
 import { Plus, Delete, Edit } from '@hard-ui/icons'
-import { Button } from 'hard-ui'
+import { Button_ as Button } from 'hard-ui'
 import React from 'react'
 
 const App: React.FC = () => {
@@ -265,7 +265,7 @@ export default App
 
 ```tsx
 import { Plus } from '@hard-ui/icons'
-import { Button } from 'hard-ui'
+import { Button_ as Button } from 'hard-ui'
 import React from 'react'
 
 const App: React.FC = () => {
@@ -294,7 +294,7 @@ export default App
 
 ```tsx
 import { Plus, Search } from '@hard-ui/icons'
-import { Button } from 'hard-ui'
+import { Button_ as Button } from 'hard-ui'
 import React from 'react'
 
 const App: React.FC = () => {

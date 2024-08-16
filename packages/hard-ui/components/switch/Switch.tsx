@@ -1,32 +1,45 @@
-import React from 'react'
-import styled from 'styled-components'
+import { NAME_SPACE } from '@hard-ui/hard-ui/config'
+import classNames from 'classnames'
+import './style'
+import React, { useState } from 'react'
 
 export interface SwitchProps {
 	className?: string
 	style?: React.CSSProperties
+	checked?: boolean
 	disabled?: boolean
+	checkedChildren?: React.ReactNode
+	unCheckedChildren?: React.ReactNode
 }
 
 const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>((props, ref) => {
-	console.log(props, ref)
+	const { disabled = false, checkedChildren, unCheckedChildren } = props
+	const [checked, setChecked] = useState<boolean>(() => !!props.checked)
 
-	const StyledButton = styled.button`
-		min-width: 60px;
-		padding: 0;
-		border: 1px solid red;
-		> span {
-			display: inline-flex;
-			width: 14px;
-			height: 14px;
-			background-color: #ffffff;
-			border-radius: 50px;
-		}
-	`
+	const className = classNames(
+		`${NAME_SPACE}-switch`,
+		{
+			'is-checked': checked,
+			'is-disabled': disabled
+		},
+		props.className
+	)
+
+	const handleClick = () => {
+		if (disabled) return
+		setChecked(!checked)
+	}
 
 	return (
-		<StyledButton className='h-switch'>
-			<span className='h-switch-handle'></span>
-		</StyledButton>
+		<button type='button' className={className} style={props.style} ref={ref} onClick={handleClick}>
+			<span className={classNames(`${NAME_SPACE}-switch-handle`)}></span>
+			{(checkedChildren || unCheckedChildren) && (
+				<span className={classNames(`${NAME_SPACE}-switch-inner`)}>
+					{checkedChildren && checked && checkedChildren}
+					{unCheckedChildren && !checked && unCheckedChildren}
+				</span>
+			)}
+		</button>
 	)
 })
 

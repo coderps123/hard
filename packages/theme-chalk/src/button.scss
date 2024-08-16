@@ -33,7 +33,7 @@ $button-icon-span-gap: map.merge(
 	box-sizing: border-box;
 	outline: none;
 	transition: 0.1s;
-	font-weight: 600;
+	font-weight: 500;
 	user-select: none;
 	vertical-align: middle;
 	-webkit-appearance: none;
@@ -61,9 +61,9 @@ $button-icon-span-gap: map.merge(
 		align-items: center;
 	}
 
-	& + & {
-		margin-left: 12px;
-	}
+	// & + & {
+	// 	margin-left: 12px;
+	// }
 
 	// mixins: button-size
 	& {

@@ -9,7 +9,7 @@ import './style'
 
 import { useStyle } from './style'
 
-interface ButtonProps {
+export interface ButtonProps {
 	type?: Buttontype
 	className?: string
 	style?: React.CSSProperties
@@ -28,32 +28,17 @@ interface ButtonProps {
 }
 
 const InternalButton: React.ForwardRefRenderFunction<HTMLButtonElement, Omit<ButtonProps, 'ref'>> = (props, ref) => {
-	const { type, disabled, htmlType = 'button' } = props
+	const { type, disabled = false, circle = false, htmlType = 'button' } = props
 
 	const buttonGroupContext = useContext(ButtonGroupContext)
 
 	const buttonType = useMemo(() => type ?? buttonGroupContext?.type ?? 'default', [type, buttonGroupContext?.type])
-	const buttonSize = useMemo(
-		() => props.size ?? buttonGroupContext?.size ?? 'default',
-		[props.size, buttonGroupContext?.size]
-	)
+	// const buttonSize = useMemo(
+	// 	() => props.size ?? buttonGroupContext?.size ?? 'default',
+	// 	[props.size, buttonGroupContext?.size]
+	// )
 
-	const className = classNames(
-		`${NAME_SPACE}-button`,
-		{
-			[`${NAME_SPACE}-button--${buttonType}`]: buttonType !== 'default' && buttonType,
-			[`${NAME_SPACE}-button--${buttonSize}`]: buttonSize !== 'default' && buttonSize,
-			'is-plain': props.plain,
-			'is-round': props.round,
-			'is-circle': props.circle,
-			'is-disabled': disabled,
-			'is-text': props.text,
-			'is-has-bg': props.bg,
-			'is-loading': props.loading
-		},
-		props.className
-	)
-	console.log(className)
+	const className = classNames(`${NAME_SPACE}-button`, props.className)
 
 	const handleClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
 		if (isFunction(props.onClick)) {
@@ -65,11 +50,11 @@ const InternalButton: React.ForwardRefRenderFunction<HTMLButtonElement, Omit<But
 
 	const children = props.children && <span>{props.children}</span>
 
-	const { StyledButton } = useStyle(buttonType, disabled)
+	const { StyledButton } = useStyle(buttonType, disabled, circle)
 
 	return (
 		// eslint-disable-next-line react/button-has-type
-		<StyledButton ref={ref} style={props.style} type={htmlType} onClick={handleClick}>
+		<StyledButton ref={ref} style={props.style} className={className} type={htmlType} onClick={handleClick}>
 			{iconNode}
 			{children}
 		</StyledButton>

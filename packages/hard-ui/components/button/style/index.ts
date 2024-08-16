@@ -1,13 +1,13 @@
 import '@hard-ui/theme-chalk/src/base.scss'
-import '@hard-ui/theme-chalk/src/button-group.scss'
-import '@hard-ui/theme-chalk/src/button.scss'
+// import '@hard-ui/theme-chalk/src/button-group.scss'
+// import '@hard-ui/theme-chalk/src/button.scss'
 import './index.scss'
 
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Buttontype } from '../ButtonHelpers'
 
-export const useStyle = (type: Buttontype, disabled: boolean) => {
-	let commonButtonStyle = styled.button`
+export const useStyle = (type: Buttontype, disabled: boolean, circle: boolean) => {
+	const commonStyle = css`
 		--h-button-border-radius: 2px;
 		--h-button-size-large: 40px;
 		--h-button-size: 32px;
@@ -29,20 +29,54 @@ export const useStyle = (type: Buttontype, disabled: boolean) => {
 		user-select: none;
 		border: none;
 		box-sizing: border-box;
+
+		span {
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.h-icon + span {
+			margin-left: 6px;
+		}
+
+		${circle &&
+		css`
+			border-radius: 50%;
+			width: var(--h-button-size);
+		`}
 	`
 
 	const getButtonStyle = () => {
 		const map = {
-			primary: styled(commonButtonStyle)`
+			primary: css`
 				color: var(--h-color-white);
 				background-color: var(--h-color-primary);
 				box-shadow: 0 0 0 1px var(--h-color-primary-light-3);
 
 				&:hover {
 					background-color: var(--h-color-primary-light-3);
+					color: var(--h-color-white);
 				}
+
+				${disabled &&
+				css`
+					color: var(--h-disabled-text-color);
+					background-color: var(--h-disabled-bg-color);
+					border-color: var(--h-disabled-border-color);
+					box-shadow: 0 0 0 1px var(--h-disabled-border-color);
+
+					cursor: not-allowed;
+
+					&:hover {
+						color: var(--h-disabled-text-color);
+						background-color: var(--h-disabled-bg-color);
+						box-shadow: 0 0 0 1px var(--h-disabled-border-color);
+						border-color: var(--h-disabled-border-color);
+					}
+				`}
 			`,
-			default: styled(commonButtonStyle)`
+			default: css`
 				color: var(--h-color-blank);
 				background-color: var(--h-color-white);
 				box-shadow: 0 0 0 1px #d9d9d9;
@@ -53,15 +87,21 @@ export const useStyle = (type: Buttontype, disabled: boolean) => {
 				}
 
 				${disabled &&
-				styled(commonButtonStyle)`
-					color: var(--h-color-blank);
+				css`
+					color: var(--h-disabled-text-color);
 					background-color: var(--h-disabled-bg-color);
 					box-shadow: 0 0 0 1px var(--h-disabled-border-color);
 
 					cursor: not-allowed;
+
+					&:hover {
+						color: var(--h-disabled-text-color);
+						background-color: var(--h-disabled-bg-color);
+						box-shadow: 0 0 0 1px var(--h-disabled-border-color);
+					}
 				`}
 			`,
-			dashed: styled(commonButtonStyle)`
+			dashed: css`
 				color: var(--h-color-blank);
 				background-color: var(--h-color-white);
 				border-style: dashed;
@@ -71,39 +111,51 @@ export const useStyle = (type: Buttontype, disabled: boolean) => {
 					color: var(--h-color-primary);
 					border-color: var(--h-color-primary);
 				}
+
+				${disabled &&
+				css`
+					color: var(--h-disabled-text-color);
+					background-color: var(--h-disabled-bg-color);
+					border-color: var(--h-text-color-disabled);
+
+					cursor: not-allowed;
+
+					&:hover {
+						color: var(--h-disabled-text-color);
+						background-color: var(--h-disabled-bg-color);
+						border-color: var(--h-text-color-disabled);
+					}
+				`}
 			`,
-			text: styled(commonButtonStyle)`
+			text: css`
 				color: var(--h-color-blank);
-				background-color: var(--h-color-white);
+				background-color: transparent;
 
 				&:hover {
 					color: var(--h-color-primary);
 					box-shadow: 0 0 0 1px var(--h-color-primary-light-3);
 				}
+
+				${disabled &&
+				css`
+					color: var(--h-disabled-text-color);
+					cursor: not-allowed;
+
+					&:hover {
+						background-color: transparent;
+						color: var(--h-disabled-text-color);
+						box-shadow: none;
+					}
+				`}
 			`
 		}
 
-		const basicStyle = map[type]
+		const StyledButton = styled.button`
+			${commonStyle}
+			${map[type]}
+		`
 
-		const disabledStyle = () =>
-			disabled
-				? styled(basicStyle)`
-						color: var(--h-color-blank);
-						background-color: var(--h-disabled-bg-color);
-						box-shadow: 0 0 0 1px var(--h-disabled-border-color);
-
-						cursor: not-allowed;
-
-						&:hover {
-							color: var(--h-color-blank);
-							background-color: var(--h-disabled-bg-color);
-							box-shadow: 0 0 0 1px var(--h-disabled-border-color);
-							border-color: var(--h-disabled-border-color);
-						}
-					`
-				: basicStyle
-		const style = disabledStyle()
-		return style
+		return StyledButton
 	}
 
 	return {

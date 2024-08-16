@@ -5,7 +5,8 @@ const App: React.FC = () => {
 	return (
 		<div>
 			<div>
-				<Switch />
+				<Switch disabled />
+				<Switch disabled checked />
 			</div>
 		</div>
 	)
