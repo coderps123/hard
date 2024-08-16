@@ -1,0 +1,74 @@
+@use './mixins/_mixin.scss' as *;
+@use './mixins/_var.scss' as *;
+@use 'sass:map';
+@use './common/var.scss' as *;
+@use './mixins/function.scss' as *;
+@use './common/config.scss' as *;
+
+$radio: () !default;
+$radio: map.merge(
+	(
+		'font-size': getCssVar('font-size-base'),
+		'text-color': getCssVar('text-color-regular'),
+		'font-weight': getCssVar('font-weight-primary'),
+		'input-height': 14px,
+		'input-width': 14px,
+		'input-border-radius': getCssVar('border-radius-circle'),
+		'input-bg-color': getCssVar('fill-color', 'blank'),
+		'input-border': getCssVar('border'),
+		'input-border-color': getCssVar('border-color'),
+		'input-border-color-hover': getCssVar('color-primary')
+	),
+	$radio
+);
+
+@include b(radio) {
+	@include set-component-css-var('radio', $radio);
+
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	font-size: getCssVar('radio', 'font-size');
+	cursor: pointer;
+
+	@include b(radio__input) {
+		display: inline-flex;
+		position: relative;
+		width: getCssVar('radio', 'input-height');
+		height: getCssVar('radio', 'input-height');
+
+		@include b(radio__original) {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			opacity: 0;
+			z-index: -1;
+		}
+
+		@include b(radio__inner) {
+			position: absolute;
+			z-index: 10;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			border: none;
+			box-shadow: 0 0 0 1px getCssVar('radio', 'input-border-color');
+			box-sizing: border-box;
+			border-radius: 50px;
+
+			&:hover {
+				box-shadow: 0 0 0 1px getCssVar('radio', 'input-border-color-hover');
+			}
+		}
+	}
+
+	@include b(radio__label) {
+		margin-left: 10px;
+	}
+
+	@include when(checked) {
+	}
+}

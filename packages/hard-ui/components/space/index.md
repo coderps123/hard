@@ -1,6 +1,6 @@
 ---
 category: Components
-title: Space # 组件的标题，会在菜单侧边栏展示
+title: 间距 Space # 组件的标题，会在菜单侧边栏展示
 toc: content # 在页面右侧展示锚点链接
 group: # 分组
   title: 基础组件 # 所在分组的名称

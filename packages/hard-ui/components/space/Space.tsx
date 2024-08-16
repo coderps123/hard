@@ -15,8 +15,8 @@ export interface SpaceProps {
 }
 
 const sizeMap: { [key: string]: number } = {
-	large: 30,
-	default: 20,
+	large: 20,
+	default: 15,
 	small: 10
 }
 
