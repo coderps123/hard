@@ -4,7 +4,7 @@ hero:
   description: A Eeact UI Library
   actions:
     - text: Get Start
-      link: /components
+      link: /components/button
 features:
   - title: Hello
     emoji: 💎

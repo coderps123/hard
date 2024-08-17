@@ -25,7 +25,6 @@ $button-icon-span-gap: map.merge(
 	justify-content: center;
 	align-items: center;
 
-	line-height: 1;
 	height: map.get($input-height, 'default');
 	white-space: nowrap;
 	cursor: pointer;

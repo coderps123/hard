@@ -1,8 +1,8 @@
 import { NAME_SPACE } from '@hard-ui/hard-ui/config'
 import classNames from 'classnames'
-import './style'
 import React, { Fragment } from 'react'
 import { ButtonSizeType } from '../button/ButtonHelpers'
+import './style'
 
 export interface SpaceProps {
 	className?: string
@@ -51,7 +51,7 @@ const Space = React.forwardRef<HTMLDivElement, SpaceProps>((props, ref) => {
 				childrenList.map((child, index: number) => {
 					return (
 						<Fragment key={index}>
-							{index !== 0 && <span className={`${NAME_SPACE}-space-split`}>{split}</span>}
+							{index !== 0 && split && <span className={`${NAME_SPACE}-space-split`}>{split}</span>}
 							<div className={`${NAME_SPACE}-space-item`} style={getMarginStyle(index)}>
 								{child}
 							</div>
