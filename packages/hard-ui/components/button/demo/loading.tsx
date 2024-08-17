@@ -1,15 +1,17 @@
-import { Button } from 'hard-ui'
+import { Plus } from '@hard-ui/icons'
+import { Button, Space } from 'hard-ui'
 import React from 'react'
 
 const App: React.FC = () => {
 	return (
-		<div>
-			<div className='mb-4'>
-				<Button type='primary' loading>
-					Primary
-				</Button>
-			</div>
-		</div>
+		<Space>
+			<Button type='primary' loading>
+				Primary
+			</Button>
+			<Button type='primary' loading icon={<Plus />}>
+				Primary
+			</Button>
+		</Space>
 	)
 }
 

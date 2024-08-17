@@ -1,26 +1,29 @@
 import { NAME_SPACE } from '@hard-ui/hard-ui/config'
 import classNames from 'classnames'
-import './style'
 import React, { useState } from 'react'
+import { ButtonSizeType } from '../button/ButtonHelpers'
+import './style'
 
 export interface SwitchProps {
 	className?: string
 	style?: React.CSSProperties
 	checked?: boolean
 	disabled?: boolean
+	size?: ButtonSizeType
 	checkedChildren?: React.ReactNode
 	unCheckedChildren?: React.ReactNode
 }
 
 const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>((props, ref) => {
-	const { disabled = false, checkedChildren, unCheckedChildren } = props
+	const { disabled = false, size = 'default', checkedChildren, unCheckedChildren } = props
 	const [checked, setChecked] = useState<boolean>(() => !!props.checked)
 
 	const className = classNames(
 		`${NAME_SPACE}-switch`,
 		{
 			'is-checked': checked,
-			'is-disabled': disabled
+			'is-disabled': disabled,
+			[`${NAME_SPACE}-switch-${size}`]: size !== 'default'
 		},
 		props.className
 	)

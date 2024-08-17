@@ -3,6 +3,14 @@
 @use './mixins/function.scss' as *;
 
 :root {
+	// 公共颜色集合
+	@each $colorKey, $colorValues in $common-colors {
+		@for $i from 1 through 10 {
+			@include set-css-var-value(color-#{$colorKey}-#{$i}, nth($colorValues, $i));
+		}
+	}
+
+	// 主题色相关
 	@include set-css-var-value('color-white', $color-white);
 	@include set-css-var-value('color-black', $color-black);
 	// @include set-css-var-value('color-primary', $color-primary);

@@ -1,10 +1,10 @@
-import { Plus, Delete, Edit } from '@hard-ui/icons'
-import { Button } from 'hard-ui'
+import { Delete, Edit, Plus } from '@hard-ui/icons'
+import { Button, Space } from 'hard-ui'
 import React from 'react'
 
 const App: React.FC = () => {
 	return (
-		<div>
+		<Space>
 			<Button.Group type='primary'>
 				<Button icon={<Plus />}>Previous Page</Button>
 				<Button>
@@ -13,7 +13,7 @@ const App: React.FC = () => {
 				</Button>
 			</Button.Group>
 
-			<Button.Group className='ml-10' style={{ marginLeft: '20px' }}>
+			<Button.Group>
 				<Button type='primary' icon={<Delete />}></Button>
 				<Button type='primary'>
 					<Edit />
@@ -22,7 +22,7 @@ const App: React.FC = () => {
 					<Plus />
 				</Button>
 			</Button.Group>
-		</div>
+		</Space>
 	)
 }
 

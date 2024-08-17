@@ -2,6 +2,44 @@
 @use 'sass:math';
 @use '../mixins/function.scss' as *;
 
+// 定义一个函数，用于生成颜色序列
+@function generate-colors($color) {
+	$color-list: (); // 初始化颜色列表
+	@for $i from 1 through 5 {
+		// 计算每个颜色的百分比
+		$percentage: math.percentage(math.div($i, 5));
+		// 将生成的颜色添加到列表中
+		$color-list: append($color-list, mix($color, white, $percentage));
+	}
+	$color-list: append($color-list, $color);
+	@for $i from 7 through 10 {
+		// 计算每个颜色的百分比
+		$percentage: math.percentage(math.div(4, $i));
+		// 将生成的颜色添加到列表中
+		$color-list: append($color-list, mix($color, black, $percentage));
+	}
+	@return $color-list;
+}
+
+$common-colors: () !default;
+$common-colors: map.merge(
+	(
+		'red': generate-colors(#f5222d),
+		'volcano': generate-colors(#fa541c),
+		'orange': generate-colors(#fa8c16),
+		'gold': generate-colors(#faad14),
+		'yellow': generate-colors(#fadb14),
+		'lime': generate-colors(#a0d911),
+		'green': generate-colors(#52c41a),
+		'cyan': generate-colors(#13c2c2),
+		'blue': generate-colors(#1677ff),
+		'geekblue': generate-colors(#2f54eb),
+		'purple': generate-colors(#722ed1),
+		'magenta': generate-colors(#eb2f96)
+	),
+	$common-colors
+);
+
 $types: primary, success, warning, danger, error, info;
 
 $colors: () !default;
@@ -10,19 +48,19 @@ $colors: map.deep-merge(
 		'white': #ffffff,
 		'black': #000000,
 		'primary': (
-			'base': #409eff
+			'base': #722ed1
 		),
 		'success': (
-			'base': #67c23a
+			'base': #52c41a
 		),
 		'warning': (
-			'base': #e6a23c
+			'base': #faad14
 		),
 		'danger': (
 			'base': #f56c6c
 		),
 		'error': (
-			'base': #ff4d4f
+			'base': #f5222d
 		),
 		'info': (
 			'base': #909399
@@ -275,4 +313,32 @@ $input-padding-horizontal: map.merge(
 		'small': 8px
 	),
 	$input-padding-horizontal
+);
+
+// Radio
+$radio: () !default;
+$radio: map.merge(
+	(
+		'font-size': getCssVar('font-size-base'),
+		'text-color': getCssVar('text-color-regular'),
+		'font-weight': getCssVar('font-weight-primary'),
+		'input-height': 14px,
+		'input-width': 14px,
+		'input-border-radius': getCssVar('border-radius-circle'),
+		'input-bg-color': getCssVar('fill-color', 'blank'),
+		'input-border': getCssVar('border'),
+		'input-border-color': getCssVar('border-color'),
+		'input-border-color-hover': getCssVar('color-primary')
+	),
+	$radio
+);
+
+// Switch
+$switch: () !default;
+$switch: map.merge(
+	(
+		'on-color': getCssVar('color-primary'),
+		'off-color': getCssVar('border-color')
+	),
+	$switch
 );

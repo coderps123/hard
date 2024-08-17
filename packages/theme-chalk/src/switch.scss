@@ -5,22 +5,74 @@
 @use './mixins/function.scss' as *;
 @use './common/config.scss' as *;
 
-@include b(switch) {
-	--height: 24px;
-	--width: 50px;
+$switch-height: () !default;
+$switch-height: map.merge(
+	(
+		'large': 32px,
+		'default': 28px,
+		'small': 22px
+	),
+	$switch-height
+);
 
+$switch-handle-size: () !default;
+$switch-handle-size: map.merge(
+	(
+		'large': 15px,
+		'default': 15px,
+		'small': 10px
+	),
+	$switch-handle-size
+);
+
+$switch-min-width: () !default;
+$switch-min-width: map.merge(
+	(
+		'large': 80px,
+		'default': 60px,
+		'small': 40px
+	),
+	$switch-min-width
+);
+
+$switch-font-size: () !default;
+$switch-font-size: map.merge(
+	(
+		'large': 14px,
+		'default': 14px,
+		'small': 12px
+	),
+	$switch-font-size
+);
+
+$switch-padding-horizontal: () !default;
+$switch-padding-horizontal: map.merge(
+	(
+		'large': 10px,
+		'default': 6px,
+		'small': 4px
+	),
+	$switch-padding-horizontal
+);
+
+@include b(switch) {
+	@include set-component-css-var('switch', $switch);
+}
+
+@include b(switch) {
 	position: relative;
-	min-width: var(--width);
-	width: fit-content;
-	height: var(--height);
+	height: map.get($switch-height, 'default');
+	min-width: map.get($switch-min-width, 'default');
+	vertical-align: middle;
 	display: inline-flex;
 	justify-content: space-between;
 	align-items: center;
 	box-sizing: border-box;
 	border: none;
+	font-size: map.get($switch-font-size, 'default');
 	background-color: rgba(0, 0, 0, 0.45);
 	border-radius: 50px;
-	padding: 0 4px;
+	padding: 0 map.get($switch-padding-horizontal, 'default');
 	transition: background-color 0.3s cubic-bezier(0.34, 0.69, 0.1, 1);
 	color: getCssVar('color-white');
 	cursor: pointer;
@@ -29,8 +81,8 @@
 		position: absolute;
 		inset-inline-start: 4px;
 		display: inline-flex;
-		width: 15px;
-		height: 15px;
+		width: map.get($switch-handle-size, 'default');
+		height: map.get($switch-handle-size, 'default');
 		background-color: getCssVar('color-white');
 		border-radius: 50%;
 		transition: all 0.3s cubic-bezier(0.34, 0.69, 0.1, 1);
@@ -38,15 +90,14 @@
 
 	@include b(switch-inner) {
 		display: inline-flex;
-		justify-content: center;
+		justify-content: flex-end;
 		align-items: center;
-		inset-inline-start: calc(19px + 4px);
 		padding-left: 19px;
-		padding-right: 4px;
+		width: 100%;
 	}
 
 	&.is-checked {
-		background-color: #4096ff;
+		background-color: getCssVar('switch-on-color');
 
 		@include b(switch-handle) {
 			inset-inline-start: calc(100% - 4px - 15px);
@@ -55,7 +106,8 @@
 		@include b(switch-inner) {
 			inset-inline-start: 4px;
 			padding-right: 19px;
-			padding-left: 4px;
+			padding-left: 0;
+			justify-content: flex-start;
 		}
 	}
 
@@ -65,5 +117,12 @@
 	}
 	&.is-checked.is-disabled {
 		background-color: getCssVar('color-primary', 'light-2');
+	}
+}
+
+@each $size in (large, small) {
+	@include b(switch-#{$size}) {
+		height: map.get($switch-height, $size);
+		font-size: map.get($switch-font-size, $size);
 	}
 }

@@ -1,6 +1,6 @@
 ---
 category: Components
-title: Button css in js 实现 # 组件的标题，会在菜单侧边栏展示
+title: 按钮 Button # 组件的标题，会在菜单侧边栏展示
 toc: content # 在页面右侧展示锚点链接
 group: # 分组
   title: 基础组件 # 所在分组的名称
@@ -13,6 +13,8 @@ group: # 分组
 
 ## 基础用法
 
+使用 `type`、`plain`、`round` 和 `circle` 来定义按钮的样式。
+
 <code src="./demo/basic.tsx"></code>
 
 ## 禁用状态​
@@ -23,13 +25,21 @@ group: # 分组
 
 <code src="./demo/disabled.tsx"></code>
 
+## 文字按钮​
+
+没有边框和背景色的按钮。
+
+<code src="./demo/text.tsx"></code>
+
 ## 图标按钮​
+
+使用图标为按钮添加更多的含义。 你也可以单独使用图标不添加文字来节省显示区域占用。
 
 <code src="./demo/icon.tsx"></code>
 
-## 圆形按钮
+## 按钮组
 
-<code src="./demo/circle.tsx"></code>
+<code src="./demo/group.tsx"></code>
 
 ## 加载状态按钮
 
@@ -37,9 +47,13 @@ group: # 分组
 
 <code src="./demo/loading.tsx"></code>
 
-## 按钮组
+## 调整尺寸​
 
-<code src="./demo/group.tsx"></code>
+除了默认的大小，按钮组件还提供了几种额外的尺寸可供选择，以便适配不同的场景。
+
+使用 `size` 属性额外配置尺寸，可使用 `large` 和 `small` 两种值。
+
+<code src="./demo/size.tsx"></code>
 
 ## Button API
 
@@ -71,9 +85,3 @@ group: # 分组
 | children  | 子组件   | Component           | --     |
 | className | css 类名 | string              | --     |
 | style     | css 样式 | React.CSSProperties | --     |
-
-<code src="./demo/basic.tsx"></code>
-
-```
-
-```

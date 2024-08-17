@@ -1,22 +1,20 @@
-import { Button } from 'hard-ui'
-import { Plus, Edit, Search, Delete } from '@hard-ui/icons'
+import { Delete, Edit, Plus, Search } from '@hard-ui/icons'
+import { Button, Space } from 'hard-ui'
 import React from 'react'
 
 const App: React.FC = () => {
 	return (
-		<div>
-			<div className='mb-4'>
-				<Button type='primary' icon={<Edit />} />
-				<Button type='primary' style={{ marginLeft: '20px' }} icon={<Plus />} />
-				<Button type='primary' style={{ marginLeft: '20px' }} icon={<Delete />} />
-				<Button type='primary' style={{ marginLeft: '20px' }} icon={<Search />}>
-					Search
-				</Button>
-				<Button type='primary' style={{ marginLeft: '20px' }}>
-					Upload <Plus className='h-icon--right' />
-				</Button>
-			</div>
-		</div>
+		<Space>
+			<Button type='primary' icon={<Edit />} />
+			<Button type='primary' icon={<Plus />} />
+			<Button type='primary' icon={<Delete />} />
+			<Button type='primary' icon={<Search />}>
+				Search
+			</Button>
+			<Button type='primary'>
+				Upload <Plus className='h-icon--right' />
+			</Button>
+		</Space>
 	)
 }
 

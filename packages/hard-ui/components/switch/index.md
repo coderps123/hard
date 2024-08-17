@@ -21,6 +21,8 @@ group: # 分组
 
 ## 文字和图标
 
-需要抽空优化下，暂时没时间呀。
-
 <code src="./demo/child.tsx"></code>
+
+## 尺寸
+
+<code src="./demo/size.tsx"></code>
