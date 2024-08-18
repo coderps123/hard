@@ -11,7 +11,7 @@ const App: React.FC = () => {
 		{ type: 'danger', text: 'danger' }
 	] as const
 	return (
-		<div>
+		<Space direction='vertical'>
 			<Space>
 				{buttons.map((button) => {
 					return (
@@ -39,7 +39,7 @@ const App: React.FC = () => {
 					)
 				})}
 			</Space>
-		</div>
+		</Space>
 	)
 }
 

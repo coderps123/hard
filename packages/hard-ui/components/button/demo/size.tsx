@@ -4,7 +4,7 @@ import React from 'react'
 
 const App: React.FC = () => {
 	return (
-		<div>
+		<Space direction='vertical'>
 			<Space>
 				<Button size='large'>Large</Button>
 				<Button>Default</Button>
@@ -40,7 +40,7 @@ const App: React.FC = () => {
 				<Button icon={<Search />} circle />
 				<Button icon={<Search />} size='small' circle />
 			</Space>
-		</div>
+		</Space>
 	)
 }
 

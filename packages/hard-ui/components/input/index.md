@@ -11,64 +11,19 @@ group: # 分组
 
 ## 基础用法
 
-```tsx
-import { Input } from 'hard-ui'
-import React from 'react'
-
-const App: React.FC = () => {
-	return (
-		<div>
-			<div className='mb-4'>
-				<Input style={{ width: '240px' }} />
-			</div>
-		</div>
-	)
-}
-
-export default App
-```
+<code src="./demo/basic"></code>
 
 ## 禁用状态​
 
 通过 `disabled` 属性指定是否禁用 `Input` 组件
 
-```tsx
-import { Input } from 'hard-ui'
-import React from 'react'
-
-const App: React.FC = () => {
-	return (
-		<div>
-			<div className='mb-4'>
-				<Input placeholder='placeholder' disabled style={{ width: '240px' }} />
-			</div>
-		</div>
-	)
-}
-
-export default App
-```
+<code src="./demo/disabled"></code>
 
 ## 一键清空​
 
 使用 `clearable` 属性即可得到一个可一键清空的输入框
 
-```tsx
-import { Input } from 'hard-ui'
-import React from 'react'
-
-const App: React.FC = () => {
-	return (
-		<div>
-			<div className='mb-4'>
-				<Input placeholder='placeholder' clearable style={{ width: '240px' }} />
-			</div>
-		</div>
-	)
-}
-
-export default App
-```
+<code src="./demo/clearable"></code>
 
 ## 输入长度限制
 
@@ -76,111 +31,21 @@ export default App
 
 使用 `showCount` 控制是否展示字数
 
-```tsx
-import { Input } from 'hard-ui'
-import React from 'react'
-
-const App: React.FC = () => {
-	const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-		console.log('Change:', e.target.value)
-	}
-	return (
-		<div>
-			<div>
-				<Input className='mb-10' showCount maxLength={20} onChange={onChange} />
-				<Input className='mb-10' maxLength={20} onChange={onChange} />
-				<Input className='mb-10' showCount onChange={onChange} />
-			</div>
-		</div>
-	)
-}
-
-export default App
-```
+<code src="./demo/showCount"></code>
 
 ## 尺寸​
 
 使用 `size` 属性改变输入框大小。 除了默认大小外，还有另外两个选项： `large`, `small`。
 
-```tsx
-import { Search } from '@hard-ui/icons'
-import { Input } from 'hard-ui'
-import React from 'react'
-
-const App: React.FC = () => {
-	return (
-		<div>
-			<div>
-				<Input style={{ width: '340px', marginTop: '10px' }} size='large' placeholder='Please Input' />
-				<Input style={{ width: '340px', marginTop: '10px', marginLeft: '10px' }} placeholder='Please Input' />
-				<Input
-					style={{ width: '340px', marginTop: '10px', marginLeft: '10px' }}
-					size='small'
-					placeholder='Please Input'
-				/>
-			</div>
-			<div>
-				<Input
-					style={{ width: '340px', marginTop: '10px' }}
-					size='large'
-					placeholder='Please Input'
-					addonBefore='http://'
-					addonAfter='.com'
-				/>
-				<Input
-					v-model='input1'
-					style={{ width: '340px', marginTop: '10px', marginLeft: '10px' }}
-					placeholder='Please Input'
-					addonBefore='http://'
-					addonAfter='.com'
-				/>
-				<Input
-					style={{ width: '340px', marginTop: '10px', marginLeft: '10px' }}
-					size='small'
-					placeholder='Please Input'
-					addonAfter={<Search />}
-				/>
-			</div>
-		</div>
-	)
-}
-
-export default App
-```
+<code src="./demo/size"></code>
 
 ## 密码框
 
-```tsx
-import { Input } from 'hard-ui'
-import React from 'react'
-
-const App: React.FC = () => {
-	return (
-		<div>
-			<div>
-				<Input.Password value='1234' style={{ width: '240px' }} />
-				<Input.Password
-					value='1234'
-					visibilityToggle={{
-						visible: true,
-						onVisibleChange(visible) {
-							console.log(visible)
-						}
-					}}
-					iconRender={(visible) => (visible ? 123 : 456)}
-					style={{ width: '240px' }}
-				/>
-			</div>
-		</div>
-	)
-}
-
-export default App
-```
+<code src="./demo/password"></code>
 
 ## 文本域
 
-<code src='./demo/index.tsx'> </code>
+<code src='./demo/textarea.tsx'> </code>
 
 ## Input API
 

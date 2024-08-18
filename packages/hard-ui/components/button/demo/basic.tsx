@@ -3,7 +3,7 @@ import { Button, Space } from 'hard-ui'
 import React from 'react'
 
 const App: React.FC = () => (
-	<div>
+	<Space direction='vertical'>
 		<Space>
 			<Button>Default </Button>
 			<Button type='primary'>Primary</Button>
@@ -59,7 +59,7 @@ const App: React.FC = () => (
 			<Button icon={<Edit />} type='warning' circle />
 			<Button icon={<Edit />} type='danger' circle />
 		</Space>
-	</div>
+	</Space>
 )
 
 export default App

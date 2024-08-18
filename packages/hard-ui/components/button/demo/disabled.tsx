@@ -2,7 +2,7 @@ import { Button, Space } from 'hard-ui'
 import React from 'react'
 
 const App: React.FC = () => (
-	<div>
+	<Space direction='vertical'>
 		<Space>
 			<Button disabled>Default</Button>
 			<Button type='primary' disabled>
@@ -41,7 +41,7 @@ const App: React.FC = () => (
 				Danger
 			</Button>
 		</Space>
-	</div>
+	</Space>
 )
 
 export default App

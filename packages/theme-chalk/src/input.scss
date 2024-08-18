@@ -78,6 +78,7 @@
 			display: inline-flex;
 			justify-content: center;
 			align-items: center;
+			white-space: nowrap;
 
 			&:has([class*='#{$namespace}-input__suffix-inner']) {
 				display: inline-flex;
