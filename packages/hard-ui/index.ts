@@ -1,1 +1,1 @@
-export { Button, Input, Radio, Space, Switch, Alert } from './components'
+export { Alert, Button, Input, Message, Radio, Space, Switch } from './components'

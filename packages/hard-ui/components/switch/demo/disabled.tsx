@@ -1,14 +1,12 @@
-import { Switch } from 'hard-ui'
+import { Space, Switch } from 'hard-ui'
 import React from 'react'
 
 const App: React.FC = () => {
 	return (
-		<div>
-			<div>
-				<Switch disabled />
-				<Switch disabled checked />
-			</div>
-		</div>
+		<Space>
+			<Switch disabled />
+			<Switch disabled checked />
+		</Space>
 	)
 }
 

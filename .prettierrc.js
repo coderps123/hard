@@ -15,16 +15,16 @@ module.exports = {
 	// 在JSX中使用单引号而不是双引号
 	jsxSingleQuote: true,
 	// 换行符使用 lf 结尾是 可选值"<auto|lf|crlf|cr>"
-	endOfLine: 'lf'
-	// pluginSearchDirs: false,
-	// plugins: [require.resolve('prettier-plugin-organize-imports'), require.resolve('prettier-plugin-packagejson')],
-	// proseWrap: 'never',
-	// overrides: [
-	// 	{
-	// 		files: '*.md',
-	// 		options: {
-	// 			proseWrap: 'preserve'
-	// 		}
-	// 	}
-	// ]
+	endOfLine: 'lf',
+	pluginSearchDirs: false,
+	plugins: [require.resolve('prettier-plugin-organize-imports'), require.resolve('prettier-plugin-packagejson')],
+	proseWrap: 'never',
+	overrides: [
+		{
+			files: '*.md',
+			options: {
+				proseWrap: 'preserve'
+			}
+		}
+	]
 }

@@ -1,0 +1,14 @@
+@use 'mixins/_mixin' as *;
+@use 'mixins/_var' as *;
+
+@include b(message) {
+	position: fixed;
+	top: 50px;
+	left: 50%;
+	z-index: 999;
+	transform: translateX(-50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 300px;
+}
