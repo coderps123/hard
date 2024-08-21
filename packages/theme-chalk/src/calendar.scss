@@ -1,0 +1,40 @@
+@use 'mixins/_mixin' as *;
+@use 'mixins/_var' as *;
+
+@include b(calendar) {
+	width: 300px;
+	height: 250px;
+	padding: 10px;
+	border: 1px solid #aaa;
+
+	@include b(calendar__header) {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 40px;
+	}
+
+	@include b(calendar__body) {
+		@include b(calendar-table) {
+			@include b(calendar-thead) {
+				display: flex;
+				@include b(calendar-thead-item) {
+					width: calc(100% / 7);
+				}
+			}
+			@include b(calendar-tbody) {
+				display: flex;
+				flex-wrap: wrap;
+				@include b(calendar-tbody-item) {
+					width: calc(100% / 7);
+					display: inline-flex;
+					justify-content: center;
+					align-items: center;
+					@include when(select) {
+						background-color: rgb(69, 201, 36);
+					}
+				}
+			}
+		}
+	}
+}

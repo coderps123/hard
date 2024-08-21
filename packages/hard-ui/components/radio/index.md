@@ -7,7 +7,7 @@ group: # 分组
   order: 6 # 分组排序，值越小越靠前
 ---
 
-# Switch 按钮
+# Radio 按钮
 
 `Radio` 组件我们推荐使用 `Group` 组件包裹，`Group` 提供 `value` 用作单选框值的选择，`Radio` 使用 `value` 用于指定当前单选框的值。
 

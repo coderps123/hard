@@ -1,5 +1,6 @@
 export { default as Alert } from './alert'
 export { default as Button } from './button'
+export { default as Calendar } from './calendar'
 export { default as Input } from './input'
 export { default as Message } from './message'
 export { default as Radio } from './radio'
