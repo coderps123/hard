@@ -359,3 +359,12 @@ $switch: map.merge(
 	),
 	$switch
 );
+
+// Calendar
+$calendar: () !default;
+$calendar: map.merge(
+	(
+		'cell-height': 85px
+	),
+	$calendar
+);

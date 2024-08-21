@@ -1,38 +1,65 @@
+@use 'common/var' as *;
 @use 'mixins/_mixin' as *;
 @use 'mixins/_var' as *;
+@use 'mixins/function' as *;
 
 @include b(calendar) {
-	width: 300px;
-	height: 250px;
+	@include set-component-css-var('calendar', $calendar);
+}
+
+@include b(calendar) {
 	padding: 10px;
-	border: 1px solid #aaa;
 
 	@include b(calendar__header) {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		height: 40px;
+		// border-bottom: getCssVar('border');
 	}
 
 	@include b(calendar__body) {
 		@include b(calendar-table) {
+			table-layout: fixed;
+			width: 100%;
 			@include b(calendar-thead) {
-				display: flex;
-				@include b(calendar-thead-item) {
-					width: calc(100% / 7);
+				tr {
+					// width: 100%;
+					@include b(calendar-thead-item) {
+						// width: calc(100% / 7);
+						// display: inline-flex;
+						// justify-content: center;
+						// align-items: center;
+					}
 				}
 			}
 			@include b(calendar-tbody) {
-				display: flex;
-				flex-wrap: wrap;
-				@include b(calendar-tbody-item) {
-					width: calc(100% / 7);
-					display: inline-flex;
-					justify-content: center;
-					align-items: center;
-					@include when(select) {
-						background-color: rgb(69, 201, 36);
+				tr {
+					td:first-child {
+						border-left: getCssVar('border');
 					}
+					td {
+						border-bottom: getCssVar('border');
+						border-right: getCssVar('border');
+						@include b(calendar-day) {
+							height: getCssVar('calendar', 'cell-height');
+							box-sizing: border-box;
+							padding: 8px;
+						}
+
+						@include when(prev) {
+							color: getCssVar('text-color', 'secondary');
+						}
+						@include when(next) {
+							color: getCssVar('text-color', 'secondary');
+						}
+						@include when(select) {
+							background-color: getCssVar('color', 'primary');
+						}
+					}
+				}
+				tr:first-child td {
+					border-top: getCssVar('border');
 				}
 			}
 		}
