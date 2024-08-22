@@ -4,7 +4,7 @@ import React from 'react'
 const App: React.FC = () => {
 	return (
 		<div>
-			<Calendar onChange={(date) => console.log(date.format('YYYY-MM-DD'))} />
+			<Calendar locale='en-US' />
 		</div>
 	)
 }

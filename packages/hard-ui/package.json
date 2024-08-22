@@ -21,6 +21,9 @@
 		"dayjs": "^1.11.13",
 		"styled-components": "^6.1.12"
 	},
+	"devDependencies": {
+		"ahooks": "^3.8.1"
+	},
 	"peerDependencies": {
 		"classnames": ">=2.5.1",
 		"react": ">=18.3.1",

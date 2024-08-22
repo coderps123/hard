@@ -23,13 +23,12 @@
 			table-layout: fixed;
 			width: 100%;
 			@include b(calendar-thead) {
+				padding: 10px 0;
 				tr {
-					// width: 100%;
 					@include b(calendar-thead-item) {
-						// width: calc(100% / 7);
-						// display: inline-flex;
-						// justify-content: center;
-						// align-items: center;
+						padding: 12px 0;
+						color: getCssVar('text-color', 'regular');
+						font-weight: 400;
 					}
 				}
 			}
@@ -41,10 +40,17 @@
 					td {
 						border-bottom: getCssVar('border');
 						border-right: getCssVar('border');
-						@include b(calendar-day) {
+						cursor: pointer;
+
+						&:hover {
+							background-color: getCssVar('color', 'primary-light-9');
+						}
+
+						@include b(calendar-date) {
 							height: getCssVar('calendar', 'cell-height');
 							box-sizing: border-box;
 							padding: 8px;
+							overflow: auto;
 						}
 
 						@include when(prev) {
@@ -54,7 +60,8 @@
 							color: getCssVar('text-color', 'secondary');
 						}
 						@include when(select) {
-							background-color: getCssVar('color', 'primary');
+							color: getCssVar('color', 'primary');
+							background-color: getCssVar('color', 'primary-light-9');
 						}
 					}
 				}

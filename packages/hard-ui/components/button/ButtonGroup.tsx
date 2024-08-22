@@ -19,8 +19,6 @@ const InternalGroup: React.ForwardRefRenderFunction<HTMLDivElement, Omit<Interna
 
 	const value = pick(props, ['type', 'size'])
 
-	console.log(value)
-
 	return (
 		<ButtonGroupContext.Provider value={value}>
 			<div ref={ref} className={className} style={props.style}>

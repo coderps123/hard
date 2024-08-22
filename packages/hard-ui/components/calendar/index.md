@@ -12,3 +12,15 @@ group: # 分组
 ## 基础用法
 
 <code src="./demo/basic.tsx"></code>
+
+## 受控模式
+
+<code src="./demo/contronlled.tsx"></code>
+
+## 自定义内容
+
+<code src="./demo/custom.tsx"></code>
+
+## 国际化
+
+<code src="./demo/locale.tsx"></code>
