@@ -1,16 +1,15 @@
-import { NAME_SPACE } from '@hard-ui/hard-ui/config'
 import { Loading } from '@hard-ui/icons'
-import classNames from 'classnames'
 import { isFunction } from 'radash'
-import React, { useContext, useMemo } from 'react'
-import ButtonGroup, { ButtonGroupContext } from './ButtonGroup'
+import React, { PropsWithChildren, useContext } from 'react'
+import { ConfigContext } from '../config-provider'
 import { ButtonHTMLType, ButtonSizeType, Buttontype } from './ButtonHelpers'
+import { useClassNames } from './hooks'
 import './style'
 
-interface ButtonProps {
-	type?: Buttontype
-	className?: string
+export interface ButtonProps extends PropsWithChildren {
+	className?: string | string[]
 	style?: React.CSSProperties
+	type?: Buttontype
 	plain?: boolean
 	round?: boolean
 	circle?: boolean
@@ -22,38 +21,17 @@ interface ButtonProps {
 	size?: ButtonSizeType
 	htmlType?: ButtonHTMLType
 	onClick?: React.MouseEventHandler<HTMLElement>
-	children?: React.ReactNode
 }
 
 const InternalButton: React.ForwardRefRenderFunction<HTMLButtonElement, Omit<ButtonProps, 'ref'>> = (props, ref) => {
-	const { htmlType = 'button' } = props
+	// props
+	const { htmlType = 'button', className, style, type, size, plain, round, circle, disabled, text, bg, loading } = props
 
-	const buttonGroupContext = useContext(ButtonGroupContext)
+	// Context
+	const { getPrefixCls } = useContext(ConfigContext)
 
-	const buttonType = useMemo(
-		() => props.type ?? buttonGroupContext?.type ?? 'default',
-		[props.type, buttonGroupContext?.type]
-	)
-	const buttonSize = useMemo(
-		() => props.size ?? buttonGroupContext?.size ?? 'default',
-		[props.size, buttonGroupContext?.size]
-	)
-
-	const className = classNames(
-		`${NAME_SPACE}-button`,
-		{
-			[`${NAME_SPACE}-button--${buttonType}`]: buttonType !== 'default' && buttonType,
-			[`${NAME_SPACE}-button--${buttonSize}`]: buttonSize !== 'default' && buttonSize,
-			'is-plain': props.plain,
-			'is-round': props.round,
-			'is-circle': props.circle,
-			'is-disabled': props.disabled,
-			'is-text': props.text,
-			'is-has-bg': props.bg,
-			'is-loading': props.loading
-		},
-		props.className
-	)
+	// classNames
+	const { wrapCls } = useClassNames({ className, type, size, plain, round, circle, disabled, text, bg, loading, getPrefixCls })
 
 	const handleClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
 		if (isFunction(props.onClick)) {
@@ -67,20 +45,13 @@ const InternalButton: React.ForwardRefRenderFunction<HTMLButtonElement, Omit<But
 
 	return (
 		// eslint-disable-next-line react/button-has-type
-		<button ref={ref} className={className} style={props.style} type={htmlType} onClick={handleClick}>
+		<button ref={ref} className={wrapCls} style={style} type={htmlType} onClick={handleClick}>
 			{iconNode}
 			{children}
 		</button>
 	)
 }
 
-interface CompoundedComponent
-	extends React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLButtonElement>> {
-	Group: typeof ButtonGroup
-}
-
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(InternalButton) as CompoundedComponent
-
-Button.Group = ButtonGroup
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(InternalButton)
 
 export default Button

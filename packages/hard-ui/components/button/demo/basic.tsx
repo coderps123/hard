@@ -5,7 +5,7 @@ import React from 'react'
 const App: React.FC = () => (
 	<Space direction='vertical'>
 		<Space>
-			<Button>Default </Button>
+			<Button size='large'>Default </Button>
 			<Button type='primary'>Primary</Button>
 			<Button type='success'>Success</Button>
 			<Button type='info'>Info</Button>
