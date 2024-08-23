@@ -15,7 +15,7 @@ const Svg = (props: IconProps) => {
 }
 
 const InternalSvg: React.ForwardRefRenderFunction<HTMLSpanElement, Omit<IconProps, 'ref'>> = (props, ref) => {
-	const className = classNames(props.className, `${NAME_SPACE}-icon-warning`)
+	const className = classNames(props.className, `${NAME_SPACE}-icon-success`)
 	return <IconBase icon={Svg} {...omit(props, ['className'])} className={className} ref={ref} />
 }
 
