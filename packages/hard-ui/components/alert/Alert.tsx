@@ -1,13 +1,14 @@
 import { Plus } from '@hard-ui/icons'
-import classNames from 'classnames'
 import { isFunction } from 'radash'
-import './style'
 import React, { useMemo, useState } from 'react'
-import { NAME_SPACE } from '@hard-ui/hard-ui/config'
+import { useClassNames } from './hooks'
+import './style'
 
 type AlertType = 'primary' | 'success' | 'info' | 'warning' | 'error'
 
-export interface AlertProps {
+export interface AlertProps extends React.PropsWithChildren {
+	className?: string | string[]
+	style?: React.CSSProperties
 	title?: string
 	type?: AlertType
 	effect?: 'light' | 'dark'
@@ -17,7 +18,6 @@ export interface AlertProps {
 	showIcon?: boolean
 	center?: boolean
 	onClose?: (evt: React.MouseEvent<HTMLSpanElement>) => void
-	children?: React.ReactNode
 }
 
 const TypeComponentMap = {
@@ -29,12 +29,11 @@ const TypeComponentMap = {
 }
 
 const InternalAlert: React.ForwardRefRenderFunction<HTMLDivElement, AlertProps> = (props, ref) => {
-	const { title, type = 'primary', effect = 'light', closable = true, center } = props
+	const { title, type = 'primary', effect = 'light', closable = true, style } = props
 
-	const className = classNames(`${NAME_SPACE}-alert`, {
-		[`${NAME_SPACE}-alert--${type}`]: true,
-		[`is-${effect}`]: true,
-		'is-center': center
+	const { wrapCls, contentCls, titleCls, descriptionCls, iconCls, closeTextCls, closeBtnCls } = useClassNames({
+		...props,
+		effect
 	})
 
 	const [visible, setVisible] = useState<boolean>(true)
@@ -45,34 +44,27 @@ const InternalAlert: React.ForwardRefRenderFunction<HTMLDivElement, AlertProps> 
 		}
 	}
 
-	const isBigIcon = useMemo(
-		() => (props.description || props.children ? 'is-big' : ''),
-		[props.description, props.children]
-	)
+	const wrapStyle = useMemo(() => (!visible ? { display: 'none', ...style } : style), [visible, style])
 
 	const closeNode = closable ? (
 		props.closeText ? (
-			<div className={`${NAME_SPACE}-alert__close-btn is-customed`} onClick={close}>
+			<div className={closeTextCls} onClick={close}>
 				{props.closeText}
 			</div>
 		) : (
-			<Plus className={`${NAME_SPACE}-icon ${NAME_SPACE}-alert__close-btn`} onClick={close} />
+			<Plus className={closeBtnCls} onClick={close} />
 		)
 	) : null
 
-	const iconClassName = classNames(`${NAME_SPACE}-icon ${NAME_SPACE}-alert__icon`, isBigIcon)
 	const iconComponent = TypeComponentMap[type]
-	const iconNode = props.showIcon && iconComponent && <i className={iconClassName}>{iconComponent}</i>
+	const iconNode = props.showIcon && iconComponent && <i className={iconCls}>{iconComponent}</i>
 
 	return (
-		<div className={className} style={!visible ? { display: 'none' } : undefined} ref={ref}>
+		<div className={wrapCls} style={wrapStyle} ref={ref}>
 			{iconNode}
-			<div className={`${NAME_SPACE}-alert__content`}>
-				<span className={classNames(`${NAME_SPACE}-alert__title`, { 'with-description': props.description })}>
-					{title}
-				</span>
-				{props.children ||
-					(props.description && <p className={`${NAME_SPACE}-alert__description`}>{props.description}</p>)}
+			<div className={contentCls}>
+				<span className={titleCls}>{title}</span>
+				{props.children || (props.description && <p className={descriptionCls}>{props.description}</p>)}
 				{closeNode}
 			</div>
 		</div>
