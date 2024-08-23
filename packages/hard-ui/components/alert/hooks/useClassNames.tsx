@@ -1,28 +1,30 @@
-import classNames from 'classnames'
+import cs from 'classnames'
 import { useMemo } from 'react'
-import { NAME_SPACE } from '../../../config'
+import { ConfigProps } from '../../config-provider'
 import { AlertProps } from '../Alert'
 
-interface ClassNamesProps extends AlertProps {}
+interface ClassNamesProps extends AlertProps, ConfigProps {}
 
 export const useClassNames = (props: ClassNamesProps) => {
-	const { className, type, effect, center, description, children } = props
+	const { className, type, effect, center, description, children, getPrefixCls, prefix } = props
 
 	const isBigIcon = useMemo(() => (description || children ? 'is-big' : ''), [description, children])
 
 	return useMemo(() => {
-		const wrapCls = classNames(`${NAME_SPACE}-alert`, {
-			[`${NAME_SPACE}-alert--${type}`]: true,
+		const prefixCls = getPrefixCls('alert')
+
+		const wrapCls = cs(prefixCls, {
+			[`${prefixCls}--${type}`]: true,
 			[`is-${effect}`]: true,
 			'is-center': center,
 			className
 		})
-		const contentCls = `${NAME_SPACE}-alert__content`
-		const titleCls = classNames(`${NAME_SPACE}-alert__title`, { 'with-description': description })
-		const descriptionCls = `${NAME_SPACE}-alert__description`
-		const iconCls = classNames(`${NAME_SPACE}-icon ${NAME_SPACE}-alert__icon`, isBigIcon)
-		const closeTextCls = `${NAME_SPACE}-alert__close-btn is-customed`
-		const closeBtnCls = `${NAME_SPACE}-icon ${NAME_SPACE}-alert__close-btn`
+		const contentCls = `${prefixCls}__content`
+		const titleCls = cs(`${prefixCls}__title`, { 'with-description': description })
+		const descriptionCls = `${prefixCls}__description`
+		const iconCls = cs(`${prefix}-icon ${prefixCls}__icon`, isBigIcon)
+		const closeTextCls = `${prefixCls}__close-btn is-customed`
+		const closeBtnCls = `${prefix}-icon ${prefixCls}__close-btn`
 
 		return {
 			wrapCls,

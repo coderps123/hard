@@ -1,10 +1,11 @@
 import { Plus } from '@hard-ui/icons'
 import { isFunction } from 'radash'
-import React, { useMemo, useState } from 'react'
+import React, { useContext, useMemo, useState } from 'react'
+import { ConfigContext } from '../config-provider'
 import { useClassNames } from './hooks'
 import './style'
 
-type AlertType = 'primary' | 'success' | 'info' | 'warning' | 'error'
+export type AlertType = 'primary' | 'success' | 'info' | 'warning' | 'error'
 
 export interface AlertProps extends React.PropsWithChildren {
 	className?: string | string[]
@@ -29,13 +30,25 @@ const TypeComponentMap = {
 }
 
 const InternalAlert: React.ForwardRefRenderFunction<HTMLDivElement, AlertProps> = (props, ref) => {
-	const { title, type = 'primary', effect = 'light', closable = true, style } = props
+	// Context
+	const { getPrefixCls, prefix } = useContext(ConfigContext)
 
+	// props
+	const { title, type = 'primary', effect = 'light', closable = true, className, center, description, children, style } = props
+
+	// classname
 	const { wrapCls, contentCls, titleCls, descriptionCls, iconCls, closeTextCls, closeBtnCls } = useClassNames({
-		...props,
-		effect
+		className,
+		type,
+		effect,
+		center,
+		description,
+		children,
+		getPrefixCls,
+		prefix
 	})
 
+	// visible
 	const [visible, setVisible] = useState<boolean>(true)
 	const close = (evt: React.MouseEvent<HTMLSpanElement>) => {
 		setVisible(false)
@@ -44,8 +57,10 @@ const InternalAlert: React.ForwardRefRenderFunction<HTMLDivElement, AlertProps> 
 		}
 	}
 
+	// style
 	const wrapStyle = useMemo(() => (!visible ? { display: 'none', ...style } : style), [visible, style])
 
+	// CloseNode
 	const closeNode = closable ? (
 		props.closeText ? (
 			<div className={closeTextCls} onClick={close}>
@@ -56,6 +71,7 @@ const InternalAlert: React.ForwardRefRenderFunction<HTMLDivElement, AlertProps> 
 		)
 	) : null
 
+	// IconNode
 	const iconComponent = TypeComponentMap[type]
 	const iconNode = props.showIcon && iconComponent && <i className={iconCls}>{iconComponent}</i>
 
@@ -71,7 +87,6 @@ const InternalAlert: React.ForwardRefRenderFunction<HTMLDivElement, AlertProps> 
 	)
 }
 
-const Alert: React.ForwardRefExoticComponent<Omit<AlertProps, 'ref'> & React.RefAttributes<HTMLDivElement>> =
-	React.forwardRef<HTMLDivElement, AlertProps>(InternalAlert)
+const Alert: React.ForwardRefExoticComponent<Omit<AlertProps, 'ref'> & React.RefAttributes<HTMLDivElement>> = React.forwardRef<HTMLDivElement, AlertProps>(InternalAlert)
 
 export default Alert

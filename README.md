@@ -3,15 +3,17 @@
 [![NPM version](https://img.shields.io/npm/v/hard-ui.svg?style=flat)](https://npmjs.org/package/hard-ui)
 [![NPM downloads](http://img.shields.io/npm/dm/hard-ui.svg?style=flat)](https://npmjs.org/package/hard-ui)
 
-A react library developed with dumi
+一个基于 React 的前端组件库
 
-## Usage
+### 已完成
 
-TODO
-
-## Options
-
-TODO
+- 😄 Button
+- 😄 Calendar
+- 😄 Input
+- 😄 Radio
+- 😄 Space
+- 😄 Switch
+- 😄 Alert
 
 ## Development
 
@@ -36,14 +38,4 @@ $ pnpm run docs:preview
 
 # check your project for potential problems
 $ pnpm run doctor
-```
-
-## LICENSE
-
-MIT
-
-```js
-function get() {
-	sssssssssssssssssssssss = 1
-}
 ```
