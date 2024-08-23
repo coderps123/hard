@@ -1,4 +1,4 @@
-import { Plus } from '@hard-ui/icons'
+import { CircleClose, Error, Info, Success, Warning, WarnSlight } from '@hard-ui/icons'
 import { isFunction } from 'radash'
 import React, { useContext, useMemo, useState } from 'react'
 import { ConfigContext } from '../config-provider'
@@ -22,11 +22,11 @@ export interface AlertProps extends React.PropsWithChildren {
 }
 
 const TypeComponentMap = {
-	primary: <Plus />,
-	success: <Plus />,
-	warning: <Plus />,
-	error: <Plus />,
-	info: <Plus />
+	primary: <WarnSlight />,
+	success: <Success />,
+	warning: <Warning />,
+	error: <Error />,
+	info: <Info />
 }
 
 const InternalAlert: React.ForwardRefRenderFunction<HTMLDivElement, AlertProps> = (props, ref) => {
@@ -67,7 +67,7 @@ const InternalAlert: React.ForwardRefRenderFunction<HTMLDivElement, AlertProps> 
 				{props.closeText}
 			</div>
 		) : (
-			<Plus className={closeBtnCls} onClick={close} />
+			<CircleClose className={closeBtnCls} onClick={close} />
 		)
 	) : null
 
