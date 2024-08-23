@@ -3,7 +3,6 @@ import { omit } from 'radash'
 import React from 'react'
 import { NAME_SPACE } from '../../config'
 import IconBase, { IconProps } from '../components/IconBase'
-import '../index.css'
 
 const Svg = (props: IconProps) => {
 	return (

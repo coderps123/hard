@@ -8,7 +8,7 @@ const App: React.FC = () => {
 			<Button type='primary' loading>
 				Primary
 			</Button>
-			<Button type='primary' loading icon={<Plus />}>
+			<Button type='primary' loading icon={<Plus spin />}>
 				Primary
 			</Button>
 		</Space>

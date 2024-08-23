@@ -3,7 +3,6 @@ import { omit } from 'radash'
 import React from 'react'
 import { NAME_SPACE } from '../../config'
 import IconBase, { IconProps } from '../components/IconBase'
-import '../index.css'
 
 const Svg = (props: IconProps) => {
 	return (
@@ -18,7 +17,6 @@ const InternalSvg: React.ForwardRefRenderFunction<HTMLSpanElement, Omit<IconProp
 	return <IconBase icon={Svg} {...omit(props, ['className'])} className={className} ref={ref} />
 }
 
-const View: React.ForwardRefExoticComponent<Omit<IconProps, 'ref'> & React.RefAttributes<HTMLSpanElement>> =
-	React.forwardRef(InternalSvg)
+const View: React.ForwardRefExoticComponent<Omit<IconProps, 'ref'> & React.RefAttributes<HTMLSpanElement>> = React.forwardRef(InternalSvg)
 
 export default View

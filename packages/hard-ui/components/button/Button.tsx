@@ -39,7 +39,7 @@ const InternalButton: React.ForwardRefRenderFunction<HTMLButtonElement, Omit<But
 		}
 	}
 
-	const iconNode = props.icon && !props.loading ? props.icon : props.loading ? <Loading /> : null
+	const iconNode = props.icon && !props.loading ? props.icon : props.loading ? <Loading spin /> : null
 
 	const children = props.children && <span>{props.children}</span>
 
