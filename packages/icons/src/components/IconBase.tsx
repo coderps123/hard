@@ -4,7 +4,7 @@ import React from 'react'
 import { NAME_SPACE } from '../../config'
 import '../index.scss'
 
-export interface IconBaseProps {
+export interface IconBaseProps extends React.SVGAttributes<HTMLOrSVGElement> {
 	className?: string
 	style?: React.CSSProperties
 	width?: number | string
@@ -12,8 +12,6 @@ export interface IconBaseProps {
 	fill?: string
 	spin?: boolean
 	viewBox?: string
-	onClick?: React.MouseEventHandler
-	onMouseDown?: React.MouseEventHandler
 	icon: (props: IconProps) => React.JSX.Element
 }
 

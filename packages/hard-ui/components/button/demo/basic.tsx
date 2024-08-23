@@ -52,7 +52,7 @@ const App: React.FC = () => (
 		</Space>
 
 		<Space>
-			<Button icon={<Edit />} circle />
+			<Button icon={<Edit onClick={(e) => console.log(e)} />} circle />
 			<Button icon={<Edit />} type='primary' circle />
 			<Button icon={<Edit />} type='success' circle />
 			<Button icon={<Edit />} type='info' circle />
