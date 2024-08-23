@@ -57,31 +57,31 @@ group: # 分组
 
 ## Button API
 
-| 属性名    | 说明                   | 类型                | 默认值 |
-| --------- | ---------------------- | ------------------- | ------ |
-| type      | 类型                   | enum                | --     |
-| size      | 尺寸                   | enum                | --     |
-| plain     | 是否为朴素按钮         | boolean             | false  |
-| text      | 是否为文字按钮         | boolean             | false  |
-| bg        | 是否显示文字按钮背景色 | boolean             | false  |
-| link      | 是否为连接按钮         | boolean             | false  |
-| round     | 是否为圆角按钮         | boolean             | false  |
-| circle    | 是否为圆形按钮         | boolean             | false  |
-| loading   | 是否为加载中状态       | boolean             | false  |
-| disabled  | 是否禁用               | boolean             | false  |
-| icon      | 图标组件               | string / Component  | --     |
-| htmlType  | 原生 `type` 属性       | enum                | button |
-| onClick   | 点击事件               | Functon             | --     |
-| children  | 子组件                 | Component           | --     |
-| className | css 类名               | string              | --     |
-| style     | css 样式               | React.CSSProperties | --     |
+| 属性名    | 说明                   | 类型                                                         | 默认值   |
+| --------- | ---------------------- | ------------------------------------------------------------ | -------- |
+| type      | 类型                   | `default \| primary \| success \| info \| warning \| danger` | --       |
+| size      | 尺寸                   | `large \| default \| small`                                  | --       |
+| plain     | 是否为朴素按钮         | `boolean`                                                    | `false`  |
+| text      | 是否为文字按钮         | `boolean`                                                    | `false`  |
+| bg        | 是否显示文字按钮背景色 | `boolean`                                                    | `false`  |
+| link      | 是否为连接按钮         | `boolean`                                                    | `false`  |
+| round     | 是否为圆角按钮         | `boolean`                                                    | `false`  |
+| circle    | 是否为圆形按钮         | `boolean`                                                    | `false`  |
+| loading   | 是否为加载中状态       | `boolean`                                                    | `false`  |
+| disabled  | 是否禁用               | `boolean`                                                    | `false`  |
+| icon      | 图标组件               | `string` / `Component`                                       | --       |
+| htmlType  | 原生 `type` 属性       | `button \| submit \| reset`                                  | `button` |
+| onClick   | 点击事件               | `Functon`                                                    | --       |
+| children  | 子组件                 | `Component`                                                  | --       |
+| className | css 类名               | `string`                                                     | --       |
+| style     | css 样式               | `React.CSSProperties`                                        | --       |
 
 ## Button.Group API
 
-| 属性名    | 说明     | 类型                | 默认值 |
-| --------- | -------- | ------------------- | ------ |
-| type      | 类型     | enum                | --     |
-| size      | 尺寸     | enum                | --     |
-| children  | 子组件   | Component           | --     |
-| className | css 类名 | string              | --     |
-| style     | css 样式 | React.CSSProperties | --     |
+| 属性名    | 说明     | 类型                                                         | 默认值 |
+| --------- | -------- | ------------------------------------------------------------ | ------ |
+| type      | 类型     | `default \| primary \| success \| info \| warning \| danger` | --     |
+| size      | 尺寸     | `large \| default \| small`                                  | --     |
+| children  | 子组件   | `Component`                                                  | --     |
+| className | css 类名 | `string` / `string[]`                                        | --     |
+| style     | css 样式 | `React.CSSProperties`                                        | --     |
