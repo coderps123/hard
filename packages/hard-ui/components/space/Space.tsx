@@ -1,17 +1,19 @@
-import { NAME_SPACE } from '@hard-ui/hard-ui/config'
-import classNames from 'classnames'
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext, useMemo } from 'react'
 import { ButtonSizeType } from '../button/ButtonHelpers'
+import { ConfigContext } from '../config-provider'
+import { useClassNames } from './hooks'
 import './style'
 
-export interface SpaceProps {
+export type Sizetype = ButtonSizeType | number
+
+export interface SpaceProps extends React.PropsWithChildren, React.HTMLAttributes<HTMLDivElement> {
 	className?: string
 	style?: React.CSSProperties
 	direction?: 'vertical' | 'horizontal'
-	size?: ButtonSizeType | number
+	size?: Sizetype | [Sizetype, Sizetype]
 	align?: 'start' | 'end' | 'center' | 'baseline'
 	split?: React.ReactNode
-	children?: React.ReactNode
+	wrap?: boolean
 }
 
 const sizeMap: { [key: string]: number } = {
@@ -20,44 +22,45 @@ const sizeMap: { [key: string]: number } = {
 	small: 10
 }
 
-const getSize = (size: string | number): string | number => sizeMap[size + ''] ?? size
+const getSize = (size: ButtonSizeType | number): number => sizeMap[size + ''] ?? size
 
 const Space = React.forwardRef<HTMLDivElement, SpaceProps>((props, ref) => {
-	const { children, direction = 'horizontal', size = getSize('default'), align, split = '' } = props
+	// props
+	const { children, direction = 'horizontal', size, align = 'start', wrap = true, split = '', className, style, ...rest } = props
 
+	// Context
+	const { getPrefixCls, space } = useContext(ConfigContext)
+
+	const spaceSize = useMemo(() => size ?? space.size ?? getSize('default'), [size, space.size])
+
+	// classname
+	const { wrapCls, itemCls, splitCls } = useClassNames({ className, direction, size, wrap, align, getPrefixCls })
+
+	// style
+	const wrapStyle = useMemo(() => {
+		const [rowGap, columnGap] = Array.isArray(spaceSize) ? spaceSize : [getSize(spaceSize), getSize(spaceSize)]
+		return {
+			...style,
+			rowGap,
+			columnGap
+		}
+	}, [style, spaceSize])
+
+	// Children
 	const childrenList = React.Children.toArray(children)
-
-	const className = classNames(
-		`${NAME_SPACE}-space`,
-		{
-			[`is-${direction}`]: direction,
-			[`is-${align}`]: direction === 'vertical' && !align ? 'start' : align
-		},
-		props.className
-	)
-
-	const getMarginStyle = (index: number) => {
-		const isLastOne = childrenList.length === index + 1
-		return !isLastOne
-			? {
-					[direction === 'vertical' ? 'marginBottom' : 'marginRight']: getSize(size)
-				}
-			: {}
-	}
+	const childNodes = childrenList.map((child: any, index: number) => {
+		const key = (child && child.key) || `${itemCls}-${index}`
+		return (
+			<Fragment key={key}>
+				{index !== 0 && split && <span className={splitCls}>{split}</span>}
+				<div className={itemCls}>{child}</div>
+			</Fragment>
+		)
+	})
 
 	return (
-		<div ref={ref} className={className} style={props.style}>
-			{childrenList &&
-				childrenList.map((child, index: number) => {
-					return (
-						<Fragment key={index}>
-							{index !== 0 && split && <span className={`${NAME_SPACE}-space-split`}>{split}</span>}
-							<div className={`${NAME_SPACE}-space-item`} style={getMarginStyle(index)}>
-								{child}
-							</div>
-						</Fragment>
-					)
-				})}
+		<div ref={ref} className={wrapCls} style={wrapStyle} {...rest}>
+			{childNodes}
 		</div>
 	)
 })

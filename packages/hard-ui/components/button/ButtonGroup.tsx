@@ -5,7 +5,7 @@ import { ConfigContext } from '../config-provider'
 import { ButtonSizeType, Buttontype } from './ButtonHelpers'
 
 export interface ButtonGroupProps extends PropsWithChildren {
-	className?: string | string[]
+	className?: string
 	style?: React.CSSProperties
 	size?: ButtonSizeType
 	type?: Buttontype

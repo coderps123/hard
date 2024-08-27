@@ -8,7 +8,7 @@ import './style'
 export type AlertType = 'primary' | 'success' | 'info' | 'warning' | 'error'
 
 export interface AlertProps extends React.PropsWithChildren {
-	className?: string | string[]
+	className?: string
 	style?: React.CSSProperties
 	title?: string
 	type?: AlertType

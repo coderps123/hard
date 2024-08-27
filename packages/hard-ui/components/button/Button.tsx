@@ -7,7 +7,7 @@ import { useClassNames } from './hooks'
 import './style'
 
 export interface ButtonProps extends PropsWithChildren {
-	className?: string | string[]
+	className?: string
 	style?: React.CSSProperties
 	type?: Buttontype
 	plain?: boolean

@@ -3,6 +3,7 @@
 
 @include b(space) {
 	display: flex;
+	overflow: auto;
 
 	@include when(horizontal) {
 		flex-direction: row;
@@ -10,6 +11,10 @@
 
 	@include when(vertical) {
 		flex-direction: column;
+	}
+
+	@include when(wrap) {
+		flex-wrap: wrap;
 	}
 
 	@each $algin in (start, center, end, baseline) {
