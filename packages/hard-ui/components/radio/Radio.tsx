@@ -1,7 +1,7 @@
-import { NAME_SPACE } from '@hard-ui/hard-ui/config'
-import classNames from 'classnames'
 import { isFunction } from 'radash'
 import React, { useContext, useEffect, useState } from 'react'
+import { ConfigContext } from '../config-provider'
+import { useClassNames } from './hooks'
 import { RadioGroupContext } from './RadioGroup'
 import './style'
 
@@ -14,12 +14,14 @@ export interface RadioProps {
 }
 
 const Radio = React.forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
-	const { children, value } = props
+	// props
+	const { children, value, className } = props
 
+	// Context
+	const { getPrefixCls } = useContext(ConfigContext)
 	const radioGroupContext = useContext(RadioGroupContext)
 
 	const initChecked = value !== undefined && value !== null && radioGroupContext.value === value
-
 	const [checked, setChecked] = useState<boolean>(initChecked)
 
 	useEffect(() => {
@@ -28,14 +30,8 @@ const Radio = React.forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
 
 	const disabled = !!props.disabled || !!radioGroupContext.disabled
 
-	const className = classNames(
-		`${NAME_SPACE}-radio`,
-		{
-			'is-checked': checked,
-			'is-disabled': disabled
-		},
-		props.className
-	)
+	// classname
+	const { wrapCls, inputWrapCls, originalCls, innerlCls, labalCls } = useClassNames({ getPrefixCls, className, disabled, checked })
 
 	const handleClick = () => {
 		if (disabled) return
@@ -46,12 +42,12 @@ const Radio = React.forwardRef<HTMLLabelElement, RadioProps>((props, ref) => {
 	}
 
 	return (
-		<label ref={ref} htmlFor='input' className={className} onClick={handleClick}>
-			<span className={`${NAME_SPACE}-radio__input`}>
-				<input type='radio' className={`${NAME_SPACE}-radio__original`} />
-				<span className={`${NAME_SPACE}-radio__inner`}></span>
+		<label ref={ref} htmlFor='input' className={wrapCls} onClick={handleClick}>
+			<span className={inputWrapCls}>
+				<input type='radio' className={originalCls} />
+				<span className={innerlCls}></span>
 			</span>
-			{children && <span className={`${NAME_SPACE}-radio__label`}>{children}</span>}
+			{children && <span className={labalCls}>{children}</span>}
 		</label>
 	)
 })

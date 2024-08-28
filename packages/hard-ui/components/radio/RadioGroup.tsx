@@ -1,7 +1,7 @@
-import { NAME_SPACE } from '@hard-ui/hard-ui/config'
-import classNames from 'classnames'
+import cs from 'classnames'
 import { isFunction } from 'radash'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { ConfigContext } from '../config-provider'
 
 export interface RadioGroupProps {
 	className?: string
@@ -15,9 +15,13 @@ export interface RadioGroupProps {
 export const RadioGroupContext = React.createContext<Pick<RadioGroupProps, 'value' | 'disabled' | 'onChange'>>({})
 
 const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
-	const { children, disabled } = props
+	// props
+	const { children, disabled, className, style } = props
 
-	const className = classNames(`${NAME_SPACE}-radio-group`, {})
+	// Context
+	const { getPrefixCls } = useContext(ConfigContext)
+
+	const wrapCls = cs(getPrefixCls('radio-group'), className)
 
 	const [value, setValue] = useState(props.value)
 
@@ -30,7 +34,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>((props, ref
 
 	return (
 		<RadioGroupContext.Provider value={{ value, disabled, onChange }}>
-			<div ref={ref} className={className} style={props.style}>
+			<div ref={ref} className={wrapCls} style={style}>
 				{children}
 			</div>
 		</RadioGroupContext.Provider>
