@@ -1,9 +1,9 @@
 @use 'mixins/_mixin' as *;
 @use 'mixins/_var' as *;
+@use 'common/config' as *;
 
 @include b(space) {
 	display: flex;
-	overflow: auto;
 
 	@include when(horizontal) {
 		flex-direction: row;
@@ -11,6 +11,9 @@
 
 	@include when(vertical) {
 		flex-direction: column;
+		& > .#{$namespace}-space-item {
+			width: 100%;
+		}
 	}
 
 	@include when(wrap) {

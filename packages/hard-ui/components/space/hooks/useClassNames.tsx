@@ -15,7 +15,7 @@ export const useClassNames = (props: ClassNamesProps) => {
 			prefixCls,
 			{
 				[`is-${direction}`]: direction,
-				[`is-wrap`]: wrap,
+				[`is-wrap`]: direction === 'horizontal' && wrap,
 				[`is-${align}`]: direction === 'vertical' && align
 			},
 			className

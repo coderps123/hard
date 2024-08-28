@@ -34,7 +34,7 @@ const Space = React.forwardRef<HTMLDivElement, SpaceProps>((props, ref) => {
 	const spaceSize = useMemo(() => size ?? space.size ?? getSize('default'), [size, space.size])
 
 	// classname
-	const { wrapCls, itemCls, splitCls } = useClassNames({ className, direction, size, wrap, align, getPrefixCls })
+	const { wrapCls, itemCls, splitCls } = useClassNames({ className, direction, wrap, align, getPrefixCls })
 
 	// style
 	const wrapStyle = useMemo(() => {
