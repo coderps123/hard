@@ -12,7 +12,7 @@
 		"baseUrl": "./",
 		"paths": {
 			"@@/*": [".dumi/tmp/*"],
-			"hard-ui": ["packages/hard-ui"],
+			"hard-ui": ["packages/hard-ui/components"],
 			"@hard-ui/*": ["packages/*"]
 		},
 		"skipLibCheck": true,

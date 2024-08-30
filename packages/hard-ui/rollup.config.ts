@@ -18,7 +18,7 @@ const pkg = JSON.parse(readFileSync('./package.json').toString())
 
 export default defineConfig([
 	{
-		input: './index.ts',
+		input: './components/index.ts',
 		output: [
 			{
 				file: pkg.main,
@@ -44,7 +44,7 @@ export default defineConfig([
 		]
 	},
 	{
-		input: 'dist/esm/types/packages/hard-ui/index.d.ts',
+		input: 'dist/esm/types/packages/hard-ui/components/index.d.ts',
 		output: [{ file: './dist/index.d.ts', format: 'esm' }],
 		plugins: [dts()],
 		external: [/\.(css|less|scss)$/]
