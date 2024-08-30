@@ -18,6 +18,7 @@ const MutateObserver: React.FC<MutateObserverProps> = (props) => {
 		return null
 	}
 
+	// 通过 React.cloneElement 给 children 加上 ref 来获取 dom 节点。
 	return React.cloneElement(children, { ref: elementRef })
 }
 

@@ -145,6 +145,9 @@ importers:
       ahooks:
         specifier: ^3.8.1
         version: 3.8.1(react@18.3.1)
+      copy-to-clipboard:
+        specifier: ^3.3.3
+        version: 3.3.3
 
   packages/icons:
     dependencies:

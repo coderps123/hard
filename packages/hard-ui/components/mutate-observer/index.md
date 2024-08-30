@@ -7,7 +7,7 @@ group: # 分组
   order: 1 # 分组排序，值越小越靠前
 ---
 
-# MutateObserver
+# MutateObserver 监听子节点
 
 用于监听指定的 `DOM` 节点所发生的变化。
 

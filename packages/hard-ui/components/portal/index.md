@@ -7,7 +7,7 @@ group: # 分组
   order: 0 # 分组排序，值越小越靠前
 ---
 
-# Portal
+# Portal 挂载
 
 可以将组件挂载到任意的 `document` 标签下，默认挂载到 `document.body`
 
