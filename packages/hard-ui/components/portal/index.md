@@ -4,14 +4,14 @@ title: Portal # 组件的标题，会在菜单侧边栏展示
 toc: content # 在页面右侧展示锚点链接
 group: # 分组
   title: 工具组件 # 所在分组的名称
-  order: 1 # 分组排序，值越小越靠前
+  order: 0 # 分组排序，值越小越靠前
 ---
 
 # Portal
 
 ## 描述
 
-可以将组件挂载到任意的 `document` 标签下，默认挂载到 `document.body`
+> 可以将组件挂载到任意的 `document` 标签下，默认挂载到 `document.body`
 
 ## API
 
