@@ -83,5 +83,5 @@ group: # 分组
 | type      | 类型     | `default \| primary \| success \| info \| warning \| danger` | --     |
 | size      | 尺寸     | `large \| default \| small`                                  | --     |
 | children  | 子组件   | `Component`                                                  | --     |
-| className | css 类名 | `string` / `string[]`                                        | --     |
+| className | css 类名 | `string`                                                     | --     |
 | style     | css 样式 | `React.CSSProperties`                                        | --     |
