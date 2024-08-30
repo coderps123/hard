@@ -9,9 +9,7 @@ group: # 分组
 
 # Portal
 
-## 描述
-
-> 可以将组件挂载到任意的 `document` 标签下，默认挂载到 `document.body`
+可以将组件挂载到任意的 `document` 标签下，默认挂载到 `document.body`
 
 ## API
 

@@ -3,7 +3,10 @@ import { useMemo } from 'react'
 import { ConfigProps } from '../../config-provider'
 import { AlertProps } from '../Alert'
 
-interface ClassNamesProps extends AlertProps, ConfigProps {}
+interface ClassNamesProps extends AlertProps {
+	getPrefixCls: ConfigProps['getPrefixCls']
+	prefix: ConfigProps['prefix']
+}
 
 export const useClassNames = (props: ClassNamesProps) => {
 	const { className, type, effect, center, description, children, getPrefixCls, prefix } = props
