@@ -1,5 +1,5 @@
 import cs from 'classnames'
-import React, { PropsWithChildren, useContext } from 'react'
+import React, { PropsWithChildren, useContext, useEffect, useRef } from 'react'
 import { ConfigContext } from '../config-provider'
 import { useWatermark } from './hooks'
 
@@ -20,12 +20,11 @@ export interface WatermarkProps extends Required<PropsWithChildren> {
 	}
 	gap?: [number, number]
 	offset?: [number, number]
-	getContainer?: () => HTMLElement
 }
 
-const Watermark = React.forwardRef<HTMLDivElement, WatermarkProps>((props, ref) => {
+const Watermark: React.FC<WatermarkProps> = (props) => {
 	// props
-	const { className, style, children, zIndex, width, height, rotate, image, content, fontStyle, gap, offset, getContainer } = props
+	const { className, style, children, zIndex, width, height, rotate, image, content, fontStyle, gap, offset } = props
 	console.log(props)
 
 	// Context
@@ -34,15 +33,27 @@ const Watermark = React.forwardRef<HTMLDivElement, WatermarkProps>((props, ref) 
 	// classname
 	const wrapCls = cs(`${prefix}-watermark`, className)
 
+	// style
+	const mergedStyle: React.CSSProperties = {
+		position: 'relative',
+		...style
+	}
+
 	// hooks
-	const { generatorWaterMark } = useWatermark({ zIndex, width, height, rotate, image, content, fontStyle, gap, offset, getContainer })
-	console.log(generatorWaterMark)
+	const { appendWatermark } = useWatermark({ zIndex, width, height, rotate, image, content, fontStyle, gap, offset })
+
+	// ref
+	const wrapRef = useRef<HTMLDivElement>(null)
+
+	useEffect(() => {
+		appendWatermark(wrapRef)
+	}, [])
 
 	return (
-		<div className={wrapCls} style={style} ref={ref}>
+		<div className={wrapCls} style={mergedStyle} ref={wrapRef}>
 			{children}
 		</div>
 	)
-})
+}
 
 export default Watermark
